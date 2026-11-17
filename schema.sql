@@ -1,4 +1,4 @@
--- Ayıq D1 şeması. Mesaj mətni saxlanılmır.
+-- ScamShield D1 sxemi. Mesaj mətni saxlanılmır.
 CREATE TABLE IF NOT EXISTS checks (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   ts INTEGER NOT NULL,

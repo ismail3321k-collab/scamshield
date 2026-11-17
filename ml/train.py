@@ -1,4 +1,4 @@
-"""Ayıq ML modeli: karakter 3-5 gram (hash'li) TF-IDF + lojistik regresyon.
+"""ScamShield ML modeli: simvol 3-5 qram (hash) TF-IDF + logistik reqressiya.
 
 Kullanım: python -I train.py <dataset.csv> <çıktı model.json> [<ek_test.csv>]
 - Etiket: smishing = 1, ham + spam (reklam) = 0.
