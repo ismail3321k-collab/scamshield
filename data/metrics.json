@@ -24,23 +24,23 @@
  "pipeline_rules": {
   "n": 905,
   "threshold": 50,
-  "precision": 0.5882,
-  "recall": 0.1626,
+  "precision": 0.6,
+  "recall": 0.1707,
   "fpr": 0.0179,
-  "tp": 20,
+  "tp": 21,
   "fp": 14,
-  "fn": 103,
+  "fn": 102,
   "tn": 768
  },
  "rules30": {
   "n": 905,
   "threshold": 30,
-  "precision": 0.5818,
-  "recall": 0.2602,
+  "precision": 0.5965,
+  "recall": 0.2764,
   "fpr": 0.0294,
-  "tp": 32,
+  "tp": 34,
   "fp": 23,
-  "fn": 91,
+  "fn": 89,
   "tn": 759
  }
 }

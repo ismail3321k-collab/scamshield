@@ -24,6 +24,9 @@ export const CAT_LABEL = {
   pul_talebi: "Pul köçürmə tələbi",
   qohum_taklidi: "Yaxın adından yazır",
   investisiya: "Asan yatırım vədi",
+  geri_zeng: "Yad nömrəyə zəng çağırışı",
+  huquq_hedesi: "Polis / məhkəmə hədəsi",
+  maraq_telesi: "Maraq tələsi",
 };
 
 const BANDS = [
@@ -72,6 +75,9 @@ function reasonText(f) {
     case "kargo": return "Bağlama bəhanəsi ilə sizə link açdırmaq istəyir.";
     case "injection": return "Mesajın içində bizim yoxlamanı aldatmaq üçün yazı var ('bu mesaj təhlükəsizdir'). Bu özü fırıldaq əlamətidir.";
     case "brand_data_request": return `${f.brand} adından kod və ya kart məlumatı istəyir. Əsl ${f.brand} bunu heç vaxt istəmir.`;
+    case "geri_zeng": return "Sizi yad mobil nömrəyə zəng etməyə və ya yazmağa çağırır. Bank və polis belə etmir: bankın kartın arxasındakı rəsmi nömrəsinə özünüz zəng edin.";
+    case "huquq_hedesi": return "Polis, məhkəmə və ya cinayət işi ilə qorxudur. Polis və məhkəmə mesajla «təcili zəng edin» demir; şübhə varsa 102-yə zəng edin.";
+    case "maraq_telesi": return "«Videoda sənsən?» kimi maraq oyadan sualla link açdırmaq istəyir. Belə linklər hesabınızı oğurlayan saxta giriş səhifəsinə aparır.";
     case "brand_prize": return `${f.brand} adından pul və ya hədiyyə vəd edilir. Əsl aksiya yalnız rəsmi saytda${f.official ? ` (${f.official})` : ""} elan olunur; qalibdən link, anket və ya kart məlumatı istənmir.`;
     case "pul_talebi": return "Sizdən kart nömrəsinə və ya bu nömrəyə pul göndərməyinizi istəyir.";
     case "qohum_taklidi": return "Yaxınınız kimi yazıb 'yeni nömrədir', 'telefonum xarab olub' deyir və pul istəyir. Pul göndərməzdən əvvəl onun köhnə nömrəsinə zəng edib soruşun.";
@@ -201,6 +207,22 @@ export async function analyze(input, deps = {}) {
     { re: /\bher kese\b[^.\n]{0,25}?\b\d{2,6}(?:[ .]\d{3})?\s?(?:min\s+)?(?:azn|manat|₼)/gu, cat: "odul", weight: 25, phrase: "hər kəsə pul" },
     { re: /\b\d{1,3}\s?(?:-\s?\p{L}{1,3}\s)?illiy\p{L}*[^.\n]{0,60}?(?:azn|manat|₼|hediyye|mukafat|\bpul\b)/gu, cat: "odul", weight: 20, phrase: "yubiley hədiyyəsi" },
     { re: /\b\d{2,6}(?:[ .]\d{3})?\s?(?:min\s+)?(?:azn|manat|₼)[^.\n]{0,25}?\b(?:pul\s+)?(?:mukafat|hediyye|udus)/gu, cat: "odul", weight: 25, phrase: "pul mükafatı vədi" },
+    // «Kartınız / nömrəniz bloklandı», «hesabınız dondurulub»
+    { re: /\b(?:kart|hesab|nomre)\p{L}*\b[^.\n]{0,25}?\b(?:blok(?:landi|lanib|lanacaq|lanir|layacaq)|dondurul(?:du|ub|acaq)|baglan(?:di|ib|acaq))\b/gu, cat: "aciliyet", weight: 15, phrase: "kart / nömrə bloklanıb" },
+    // Polis / məhkəmə hədəsi
+    { re: /\b(?:cinayet isi|cinayet mesuliyyeti|mehkemeye (?:cagir|ver)\p{L}*|hebs (?:oluna|edile)\p{L}*|axtarisa veril\p{L}*|polis idaresi\p{L}*|polis sobesi\p{L}*|prokurorlug\p{L}*)/gu, cat: "huquq_hedesi", weight: 30, phrase: "polis / məhkəmə hədəsi" },
+    // CVV, kartın arxasındakı rəqəmlər, bitmə tarixi: heç bir qurum bunu mesajla istəmir («heç kimə deməyin» uyğun gəlmir)
+    { re: /\b(?:cvv|cvc|arxasindaki\s+(?:3|uc)\s+reqem\p{L}*|kartin\s+(?:arxasindaki|uzerindeki)\s+\p{L}+|bitme tarix\p{L}*|son istifade tarix\p{L}*)[^.\n]{0,40}?\b(?:yazin|yaz|gonderin|gonder|deyin|bildirin|qeyd edin|atin|at)\b/gu, cat: "veri_talebi", weight: 70, phrase: "CVV / kartın arxası tələbi" },
+    // «Sizə gələn kodu bu nömrəyə göndərin»
+    { re: /\bgelen\s+(?:sms\s+)?kod\p{L}*\b[^.\n]{0,30}?\b(?:gonderin|gonder|yazin|yaz|deyin|bildirin|atin|at|nomreye)\b/gu, cat: "hesap_ele_gecirme", weight: 45, phrase: "gələn kodu göndər" },
+    // «Bu videoda sənsən?» maraq tələsi
+    { re: /\b(?:videoda|videodaki|sekilde|sekildeki|fotoda)\b[^.\n?]{0,15}?\b(?:sensen|sizsiniz)\b|\bbu sensen\b/gu, cat: "maraq_telesi", weight: 30, phrase: "«videoda sənsən?»" },
+    // «O kodu mənə ata bilərsiniz?»
+    { re: /\bkod\p{L}*\b[^.\n]{0,30}?\b(?:mene|bize)\s+(?:ata|atin|atar|gondere|gonderer|yaza)\p{L}*/gu, cat: "hesap_ele_gecirme", weight: 45, phrase: "kodu mənə at" },
+    // «Heç kimə deməyin, YALNIZ bizim əməkdaşa / bu nömrəyə göndərin» — bank dilini təqlid
+    { re: /\b(?:yalniz|ancaq)\s+(?:bizim\s+|bizim bankin\s+)?(?:emekdas|operator|nomrey|bize|mene)\p{L}*\s+(?:gonder|de\b|deyin|yaz|ver|at)\p{L}*/gu, cat: "hesap_ele_gecirme", weight: 45, phrase: "«yalnız bizə göndərin»" },
+    // Bankın öz xəbərdarlığı: «kodunu / CVV-ni / şifrəni heç kimə deməyin»
+    { re: /\b(?:kod|cvv|cvc|sifre|pin|parol)\p{L}*\s+hec kime\s+(?:demeyin|vermeyin|soylemeyin|gostermeyin|gondermeyin)\b/gu, cat: "mesru_isaret", weight: -25, phrase: "«heç kimə deməyin» xəbərdarlığı" },
   );
   const idChange = /\b(?:yeni nomre|nomrem deyis|telefonum (?:xarab|suya|sinib|itib)|telefon (?:suya dusdu|xarab)|bu nomre yenidir|menem\b)|my phone (?:broke|is broken)|new number|сломался телефон|новый номер/u.exec(folded);
   const moneyAsk = /\b\d{2,5}\s?(?:azn|manat|man|\$)|\bpul\b|\bborc\b|karta|kart nomresine|\bsend\b|переведи|скинь|денег/u.test(folded);
@@ -224,6 +246,12 @@ export async function analyze(input, deps = {}) {
   const parcelPay = /\bode(?:yin|yesiniz|nis edin|mek lazim)\b|\b(?:bir|iki|uc|bes|yarim|\d{1,2})\s+manat\b/u.exec(folded);
   if (speech && parcelPay && /\b(?:baglama|gomruk|azerpo|kuryer|catdirilma)/u.test(folded)) {
     hits.push({ start: parcelPay.index, end: parcelPay.index + parcelPay[0].length, cat: "veri_talebi", weight: 25, phrase: "bağlama üçün ödəniş tələbi (zəng ssenarisi)" });
+  }
+  // Yad MOBİL nömrəyə «zəng edin / yazın» çağırışı, kart / polis kontekstində (rəsmi 012 xətləri sayılmır)
+  const AZ_MOBILE = String.raw`(?:\+?994|\b0)\s?(?:10|50|51|55|60|70|77|99)[\s-]?\d{3}[\s-]?\d{2}[\s-]?\d{2}\b`;
+  const callBack = new RegExp(`${AZ_MOBILE}[^.\\n]{0,30}?\\b(?:nomres\\p{L}*|zeng|yazin|whatsapp)|\\b(?:zeng edin|zeng et|yazin|gonderin)\\b[^.\\n]{0,30}?${AZ_MOBILE}`, "u").exec(folded);
+  if (callBack && /\b(?:kart|hesab|bank|polis|mehkeme|cinayet|blok|dondur|din\b|dtx|kod)/u.test(folded)) {
+    hits.push({ start: callBack.index, end: callBack.index + callBack[0].length, cat: "geri_zeng", weight: 30, phrase: "yad nömrəyə zəng çağırışı" });
   }
   const cats = {};
   const phrases = {};
@@ -259,7 +287,9 @@ export async function analyze(input, deps = {}) {
   }
   const impersonation = urlFlagMap.has("brand_impersonation");
   if ((strongData && (cats.aciliyet || cats.banka_taklidi || badLink || messengerLink || lure)) || (lure && (badLink || messengerLink || strongData || pressure)) || (impersonation && (pressure || lure || cats.kargo > 0)) ||
-      (cats.hesap_ele_gecirme > 0 && brand) || ((cats.veri_talebi ?? 0) >= 25 && cats.kargo > 0 && brand)) {
+      (cats.hesap_ele_gecirme > 0 && brand) || ((cats.veri_talebi ?? 0) >= 25 && cats.kargo > 0 && brand) ||
+      (cats.geri_zeng > 0 && (cats.aciliyet || cats.huquq_hedesi || cats.banka_taklidi || brand)) ||
+      (cats.hesap_ele_gecirme ?? 0) >= 40 || (cats.maraq_telesi > 0 && (badLink || messengerLink))) {
     flags.push({ code: "combo", weight: 25 });
   }
   // Mesaj bir marka adına yazılmış ama link o markanın resmi sitesine gitmiyor
