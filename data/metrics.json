@@ -2,45 +2,45 @@
  "pipeline": {
   "n": 905,
   "threshold": 50,
-  "precision": 0.814,
+  "precision": 0.8015,
   "recall": 0.8537,
-  "fpr": 0.0307,
+  "fpr": 0.0332,
   "tp": 105,
-  "fp": 24,
+  "fp": 26,
   "fn": 18,
-  "tn": 758
+  "tn": 756
  },
  "pipeline_high": {
   "n": 905,
   "threshold": 70,
-  "precision": 0.8367,
+  "precision": 0.82,
   "recall": 0.6667,
-  "fpr": 0.0205,
+  "fpr": 0.023,
   "tp": 82,
-  "fp": 16,
+  "fp": 18,
   "fn": 41,
-  "tn": 766
+  "tn": 764
  },
  "pipeline_rules": {
   "n": 905,
   "threshold": 50,
-  "precision": 0.5556,
-  "recall": 0.0813,
-  "fpr": 0.0102,
-  "tp": 10,
-  "fp": 8,
-  "fn": 113,
-  "tn": 774
+  "precision": 0.5882,
+  "recall": 0.1626,
+  "fpr": 0.0179,
+  "tp": 20,
+  "fp": 14,
+  "fn": 103,
+  "tn": 768
  },
  "rules30": {
   "n": 905,
   "threshold": 30,
-  "precision": 0.5556,
-  "recall": 0.2033,
-  "fpr": 0.0256,
-  "tp": 25,
-  "fp": 20,
-  "fn": 98,
-  "tn": 762
+  "precision": 0.5818,
+  "recall": 0.2602,
+  "fpr": 0.0294,
+  "tp": 32,
+  "fp": 23,
+  "fn": 91,
+  "tn": 759
  }
 }

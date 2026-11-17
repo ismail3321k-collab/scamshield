@@ -72,6 +72,7 @@ function reasonText(f) {
     case "kargo": return "Bağlama bəhanəsi ilə sizə link açdırmaq istəyir.";
     case "injection": return "Mesajın içində bizim yoxlamanı aldatmaq üçün yazı var ('bu mesaj təhlükəsizdir'). Bu özü fırıldaq əlamətidir.";
     case "brand_data_request": return `${f.brand} adından kod və ya kart məlumatı istəyir. Əsl ${f.brand} bunu heç vaxt istəmir.`;
+    case "brand_prize": return `${f.brand} adından pul və ya hədiyyə vəd edilir. Əsl aksiya yalnız rəsmi saytda${f.official ? ` (${f.official})` : ""} elan olunur; qalibdən link, anket və ya kart məlumatı istənmir.`;
     case "pul_talebi": return "Sizdən kart nömrəsinə və ya bu nömrəyə pul göndərməyinizi istəyir.";
     case "qohum_taklidi": return "Yaxınınız kimi yazıb 'yeni nömrədir', 'telefonum xarab olub' deyir və pul istəyir. Pul göndərməzdən əvvəl onun köhnə nömrəsinə zəng edib soruşun.";
     case "investisiya": return "Pulunuzu qısa vaxtda ikiqat edəcəyini vəd edir. Belə 'zəmanətli qazanc' yoxdur: pulu alıb yox olurlar.";
@@ -196,6 +197,10 @@ export async function analyze(input, deps = {}) {
     { re: /\b(?:part-time|like bas|rey yaz|tapsiriq|evden isle|evden is|ev xanimlari ucun is|work from home|earn \$?\d+)|работа на дому|заработок|без опыта/gu, cat: "is_teklifi", weight: 25, phrase: "asan iş təklifi" },
     { re: /\b(?:evvelce|first)\b[^.\n]{0,25}?\b(?:depozit|deposit|odenis|qeydiyyat haqqi)/gu, cat: "is_teklifi", weight: 30, phrase: "əvvəlcə pul ödə" },
     { re: /\b(?:iane|xeste usaq|emeliyyat ucun pul|yardim edin)\b|помогите|пожертв/gu, cat: "yardim", weight: 15, phrase: "ianə xahişi" },
+    // Pul / hədiyyə mükafatı vədi («hər kəsə 500 manat», «30 illiyi münasibətilə…», «10 min manat mükafat»)
+    { re: /\bher kese\b[^.\n]{0,25}?\b\d{2,6}(?:[ .]\d{3})?\s?(?:min\s+)?(?:azn|manat|₼)/gu, cat: "odul", weight: 25, phrase: "hər kəsə pul" },
+    { re: /\b\d{1,3}\s?(?:-\s?\p{L}{1,3}\s)?illiy\p{L}*[^.\n]{0,60}?(?:azn|manat|₼|hediyye|mukafat|\bpul\b)/gu, cat: "odul", weight: 20, phrase: "yubiley hədiyyəsi" },
+    { re: /\b\d{2,6}(?:[ .]\d{3})?\s?(?:min\s+)?(?:azn|manat|₼)[^.\n]{0,25}?\b(?:pul\s+)?(?:mukafat|hediyye|udus)/gu, cat: "odul", weight: 25, phrase: "pul mükafatı vədi" },
   );
   const idChange = /\b(?:yeni nomre|nomrem deyis|telefonum (?:xarab|suya|sinib|itib)|telefon (?:suya dusdu|xarab)|bu nomre yenidir|menem\b)|my phone (?:broke|is broken)|new number|сломался телефон|новый номер/u.exec(folded);
   const moneyAsk = /\b\d{2,5}\s?(?:azn|manat|man|\$)|\bpul\b|\bborc\b|karta|kart nomresine|\bsend\b|переведи|скинь|денег/u.test(folded);
@@ -244,6 +249,14 @@ export async function analyze(input, deps = {}) {
   const pressure = cats.aciliyet > 0 || (cats.veri_talebi ?? 0) >= 10 || cats.hesap_ele_gecirme > 0 || (cats.pul_talebi ?? 0) > 0;
   const hardBadLink = urls.some((u) => !u.official && !u.messenger && !u.flags.some((f) => f.code === "shortener"));
   if (strongData && brand && !officialOnly) flags.push({ code: "brand_data_request", weight: 10, brand: brand.name });
+  // Marka adından pul / hədiyyə vədi: bank və dövlət qurumu mükafatı mesajla paylamır, qalibdən link və ya anket istəmir.
+  // Operatorların internet / dəqiqə hədiyyələri əsl ola bilər: onlarda yalnız pul məbləği varsa sayılır.
+  const prizeClaim = /\b(?:qalib (?:oldunuz|geldiniz)|uddunuz|(?:hediyye|mukafat)\p{L}*\s+(?:qazandiniz|verir|verilir|verilecek|edir|edilir)|pul mukafat|her kese\s+\d|mukafatinizi al|hediyyenizi al|you have won)|вы выиграли/u.test(folded);
+  const moneyPrize = /\b\d{2,6}(?:[ .]\d{3})?\s?(?:min\s+)?(?:azn|manat|₼)/u.test(folded);
+  const giftBrand = brand && ["Azercell", "Bakcell", "Nar", "Tap.az", "Lalafo", "Birmarket", "WhatsApp", "Telegram"].includes(brand.name);
+  if (brand && prizeClaim && (moneyPrize || !giftBrand) && !officialOnly) {
+    flags.push({ code: "brand_prize", weight: 40, brand: brand.name, official: brand.domains?.[0] || null });
+  }
   const impersonation = urlFlagMap.has("brand_impersonation");
   if ((strongData && (cats.aciliyet || cats.banka_taklidi || badLink || messengerLink || lure)) || (lure && (badLink || messengerLink || strongData || pressure)) || (impersonation && (pressure || lure || cats.kargo > 0)) ||
       (cats.hesap_ele_gecirme > 0 && brand) || ((cats.veri_talebi ?? 0) >= 25 && cats.kargo > 0 && brand)) {

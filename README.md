@@ -31,7 +31,7 @@ Cyber Force komandası · OYU CyberAI Hackathon 2026
 
 | Test | Nəticə |
 |---|---|
-| 905 görülməmiş SMS (`ml/holdout.json`, `tools/eval.mjs`) | precision 81,4% · recall 85,4% · yanlış həyəcan 3,1% |
+| 905 görülməmiş SMS (`ml/holdout.json`, `tools/eval.mjs`) | precision 80,2% · recall 85,4% · yanlış həyəcan 3,3% |
 | Hücum testi (`tools/attack.mjs`) | 17 hücum + 3 nəzarət |
 
 ## Arxitektura
