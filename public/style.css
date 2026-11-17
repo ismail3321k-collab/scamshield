@@ -865,3 +865,19 @@ dialog.lesson-dlg[open]::backdrop { animation: fadeIn 0.25s ease; }
 .g-rules { list-style: none; margin: 18px 0 22px; padding: 0; display: grid; gap: 10px; }
 .g-rules li { display: flex; gap: 10px; align-items: center; font-size: 15px; }
 .g-rules li::before { content: ""; width: 8px; height: 8px; border-radius: 2px; background: var(--blue); flex: none; }
+
+/* oyun: oyunçu forması (ad, soyad, şirkət kodu) və nəticənin cədvələ avtomatik yazılması */
+.g-who-form .g-fields { margin-top: 18px; }
+.g-who-form .btn-lg { margin-top: 18px; }
+.g-wide { grid-column: 1 / -1; min-width: 0; }
+.g-help { display: block; margin-top: 6px; font-size: 13.5px; font-weight: 400; color: var(--muted); }
+.g-fields input[aria-invalid="true"] { border-color: var(--danger); }
+.g-code:not(:placeholder-shown) { text-transform: uppercase; }
+.g-player { font-weight: 700; overflow-wrap: anywhere; }
+.g-saved .g-formmsg { margin-top: 4px; }
+.g-savebar { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+.b-list li.b-gap { list-style: none; padding: 0 8px; color: var(--muted); }
+/* cədvəl sətri: uzun «Ad Soyad · KOD» sətrə sığmasa, ad öz sütununda bükülür, xal sağda qalır */
+.b-row { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; }
+.b-row .b-nick { min-width: 0; overflow-wrap: anywhere; }
+.b-row .b-score { flex: none; }

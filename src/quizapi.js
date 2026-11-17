@@ -1,6 +1,6 @@
 // "Təhlükəni aşkar et" oyununun sayt API-si. Cavablar və izahlar yalnız serverdədir (data/quiz.json), xal serverdə hesablanır.
 // Sessiya hər suala yalnız bir dəfə və sıra ilə cavab qəbul edir: cavabı "yoxlayıb" sonra dəyişmək olmur.
-// Cədvəldə yalnız ləqəb və şirkət kodu saxlanılır (həqiqi ad istənmir).
+// Cədvəldə ad, soyad ("nick" sütununda "Ad Soyad"), istəyə bağlı şirkət kodu və xal saxlanılır; ad-soyad cədvəldə hamıya görünür.
 import quiz from "../data/quiz.json" with { type: "json" };
 
 export const ROUND = 10;
@@ -25,13 +25,16 @@ export const monthOf = (ts = Date.now()) => new Date(ts + 4 * 3600 * 1000).toISO
 // Düzgün cavab +10; ardıcıl 3-cü düzgün cavabdan başlayaraq hər düzgün cavaba +5 seriya bonusu
 export const pointsFor = (correct, streak) => (correct ? 10 + (streak >= 3 ? 5 : 0) : 0);
 
-// Söyüş və təqlid (admin, ScamShield, Ayıq, polis…) olan ləqəblər qəbul edilmir
+// Söyüş və təqlid (admin, ScamShield, Ayıq, polis…) olan adlar qəbul edilmir ("Ad Soyad" birlikdə yoxlanılır)
 const BAD_NICK = /(?:^|[^\p{L}])(?:sik|amk|amq|orospu|pezeveng|yarrak|gotveren|qehbe|qəhbə|gijdillaq|peyser|dalbayob|blyat|бля|сука|хуй|пизд|еба|fuck|shit|bitch|nigg)|admin|moderator|ayıq|ayiq|scam ?shield|polis|dtx|cert/iu;
-export function cleanNick(s) {
-  const n = String(s || "").replace(/\s+/g, " ").trim();
-  if (!/^[\p{L}\p{N} _-]{2,20}$/u.test(n)) return null;
-  if (/https?|www|t\.me/i.test(n) || BAD_NICK.test(n)) return null;
-  return n;
+
+// Ad və ya soyad: 2-20 hərf; sözlər arasında bir boşluq və ya «-» ola bilər (Əli-Əkbər). Rəqəm və simvol olmaz.
+// Tam kiçik hərflə yazılan söz böyük hərflə başlayır: «əli» → «Əli», «ibrahim» → «İbrahim».
+const NAME_RE = /^\p{L}[\p{L}\p{M}]*(?:[ -]\p{L}[\p{L}\p{M}]*)*$/u;
+export function cleanName(s) {
+  const n = String(s || "").normalize("NFC").replace(/\s+/g, " ").trim();
+  if (n.length < 2 || n.length > 20 || !NAME_RE.test(n)) return null;
+  return n.replace(/[\p{L}\p{M}]+/gu, (w) => (w === w.toLocaleLowerCase("az") ? w.replace(/^./u, (c) => c.toLocaleUpperCase("az")) : w));
 }
 
 export async function quizDeleteNick(env, nick) {
@@ -39,9 +42,30 @@ export async function quizDeleteNick(env, nick) {
   return r.meta?.changes || 0;
 }
 export function cleanCompany(s) {
-  const c = String(s || "").trim().toUpperCase();
+  // Azərbaycan / türk klaviaturasında böyük «i» = «İ»: kodda latın «I» kimi qəbul edirik
+  const c = String(s || "").trim().toUpperCase().replace(/İ/g, "I");
   if (!c) return "";
   return /^[A-Z0-9-]{3,16}$/.test(c) ? c : null;
+}
+
+const badName = (n) => /https?|www|t\.me/i.test(n) || BAD_NICK.test(n);
+
+// Oyunçunun ad, soyad və şirkət kodunu yoxlayır (oyunun əvvəlində və sonunda).
+// Uğurlu: { ok, name, surname, nick: "Ad Soyad", company }. Xəta: { ok: false, status, data: { error, field } }.
+export function checkPlayer(body) {
+  const no = (error, field) => ({ ok: false, ...fail(400, error, field) });
+  const rawName = String(body?.name || "").trim(), rawSurname = String(body?.surname || "").trim();
+  if (!rawName) return no("Adınızı yazın.", "name");
+  const name = cleanName(rawName);
+  if (!name) return no("Ad 2-20 hərfdən ibarət olmalıdır (rəqəm və simvol olmadan).", "name");
+  if (!rawSurname) return no("Soyadınızı yazın.", "surname");
+  const surname = cleanName(rawSurname);
+  if (!surname) return no("Soyad 2-20 hərfdən ibarət olmalıdır (rəqəm və simvol olmadan).", "surname");
+  const nick = `${name} ${surname}`;
+  if (badName(nick)) return no("Bu ad qəbul edilmir. Öz adınızı və soyadınızı yazın.", badName(surname) && !badName(name) ? "surname" : "name");
+  const company = cleanCompany(body?.company);
+  if (company === null) return no("Şirkət kodu 3-16 simvol olmalıdır: böyük hərf, rəqəm və ya «-» (məs. OYU).", "company");
+  return { ok: true, name, surname, nick, company };
 }
 
 export async function quizStart(env) {
@@ -60,7 +84,7 @@ async function getSession(env, id) {
   return s;
 }
 
-const fail = (status, error) => ({ status, data: { error } });
+function fail(status, error, field) { return { status, data: field ? { error, field } : { error } }; }
 
 export async function quizAnswer(env, body, depth = 0) {
   const s = await getSession(env, body?.id);
@@ -102,21 +126,33 @@ export async function quizLeaders(env, opts = {}) {
   return { company: c, month: m, leaders: rows.results || [], players: cnt?.n || 0 };
 }
 
+// Oyunçunun cədvəldəki yeri (ilk 10-dan kənarda da): ən yaxşı xalı sayılır, bərabər xalda əvvəl oynayan öndədir.
+// Şirkət kodu ilə: həmin şirkətin cədvəli; kodsuz: ümumi cədvəl (orada sətir = ad + şirkət).
+async function rankOf(env, nick, company, month) {
+  const me = company
+    ? await env.DB.prepare("SELECT MAX(score) AS s, MIN(ts) AS t FROM quiz_scores WHERE month = ?1 AND company = ?2 AND nick = ?3").bind(month, company, nick).first()
+    : await env.DB.prepare("SELECT MAX(score) AS s, MIN(ts) AS t FROM quiz_scores WHERE month = ?1 AND company IS NULL AND nick = ?2").bind(month, nick).first();
+  if (me?.s == null) return { rank: null, best: null };
+  const ahead = company
+    ? await env.DB.prepare("SELECT COUNT(*) AS n FROM (SELECT MAX(score) AS s, MIN(ts) AS t FROM quiz_scores WHERE month = ?1 AND company = ?2 GROUP BY nick) WHERE s > ?3 OR (s = ?3 AND t < ?4)").bind(month, company, me.s, me.t).first()
+    : await env.DB.prepare("SELECT COUNT(*) AS n FROM (SELECT MAX(score) AS s, MIN(ts) AS t FROM quiz_scores WHERE month = ?1 GROUP BY nick, company) WHERE s > ?2 OR (s = ?2 AND t < ?3)").bind(month, me.s, me.t).first();
+  return { rank: (ahead?.n || 0) + 1, best: me.s };
+}
+
 export async function quizFinish(env, body) {
   const s = await getSession(env, body?.id);
   if (!s) return fail(404, "Oyun tapılmadı və ya vaxtı keçib. Yenidən başlayın.");
   const total = s.qids.split(",").length;
   if (s.answers.length < total) return fail(400, "Əvvəlcə bütün suallara cavab verin.");
-  const nick = cleanNick(body?.nick);
-  if (!nick) return fail(400, "Bu ləqəb olmaz: 2-20 hərf və ya rəqəm yazın (link, söyüş və «admin» kimi adlar olmaz). Həqiqi adınızı yazmayın.");
-  const company = cleanCompany(body?.company);
-  if (company === null) return fail(400, "Şirkət kodu 3-16 simvol olmalıdır: böyük hərf, rəqəm və ya «-» (məs. OYU).");
+  const p = checkPlayer(body);
+  if (!p.ok) return { status: p.status, data: p.data };
+  const { nick, company } = p;
   const r = await env.DB.prepare("UPDATE quiz_sessions SET finished = 1 WHERE id = ?1 AND finished = 0").bind(s.id).run();
   if (!r.meta?.changes) return fail(409, "Bu nəticə artıq cədvələ yazılıb.");
   const month = monthOf();
   await env.DB.prepare("INSERT INTO quiz_scores (nick, company, score, correct, total, month, ts) VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7)")
     .bind(nick, company || null, s.points, s.correct, total, month, Date.now()).run();
   const board = await quizLeaders(env, { company, month });
-  const idx = board.leaders.findIndex((x) => x.nick === nick);
-  return { status: 200, data: { ok: true, nick, score: s.points, correct: s.correct, total, rank: idx >= 0 ? idx + 1 : null, ...board } };
+  const { rank, best } = await rankOf(env, nick, company, month);
+  return { status: 200, data: { ok: true, nick, name: p.name, surname: p.surname, score: s.points, best, correct: s.correct, total, rank, ...board } };
 }

@@ -7,7 +7,7 @@ import { checkLinks } from "./linkcheck.js";
 import { screenshot, toBase64 } from "./shot.js";
 import { botUsername, resetBotCache } from "./tgapi.js";
 import { todayData } from "./today.js";
-import { quizStart, quizAnswer, quizFinish, quizLeaders, quizDeleteNick } from "./quizapi.js";
+import { quizStart, quizAnswer, quizFinish, quizLeaders, quizDeleteNick, checkPlayer } from "./quizapi.js";
 import { transcribe, meaningful, MAX_BYTES } from "./voice.js";
 import { parsePhone, phoneOnly, shortTextPhone, phoneVerdict, phoneKey, phoneCounts, addUserReport, recordPhoneSightings } from "./phone.js";
 import { maskPII } from "./mask.js";
@@ -171,8 +171,17 @@ export default {
       }
       if (request.method !== "POST") return json({ error: "Yanlış sorğu." }, 405);
       if (path === "/api/quiz/start") {
+        // Ad, soyad və şirkət kodu oyunun əvvəlində yoxlanılır: səhv olsa, 10 sualdan sonra yox, dərhal deyirik
+        let body = null;
+        try { body = await request.json(); } catch { /* gövdəsiz başlanğıc */ }
+        let player = null;
+        if (body && (body.name !== undefined || body.surname !== undefined)) {
+          const p = checkPlayer(body);
+          if (!p.ok) return json(p.data, p.status);
+          player = { name: p.name, surname: p.surname, nick: p.nick, company: p.company };
+        }
         if (rateLimited("quiz:" + ip)) return json({ error: "Çox sorğu. Bir dəqiqə sonra yenidən yoxlayın." }, 429);
-        return json(await quizStart(env));
+        return json({ ...(await quizStart(env)), player });
       }
       let body;
       try { body = await request.json(); } catch { return json({ error: "Yanlış sorğu." }, 400); }
@@ -266,7 +275,7 @@ export default {
       return json({ model: tr.model, ms: Date.now() - t0, text: tr.text, meaningful: meaningful(tr.text), score: r?.score ?? null, band: r?.band ?? null });
     }
 
-    // Cədvəldən ləqəb silmək (söyüş, təqlid): POST {nick}
+    // Cədvəldən ad silmək (söyüş, təqlid, istək): POST {nick: "Ad Soyad"}
     if (path === "/api/admin/quiz/delete" && request.method === "POST") {
       if (!authorized(request, env)) return json({ error: "İcazə yoxdur." }, 401);
       let body;

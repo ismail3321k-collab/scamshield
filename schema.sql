@@ -75,7 +75,7 @@ CREATE TABLE IF NOT EXISTS quiz_sessions (
 );
 CREATE TABLE IF NOT EXISTS quiz_scores (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
-  nick TEXT NOT NULL,             -- ləqəb (həqiqi ad istənmir)
+  nick TEXT NOT NULL,             -- "Ad Soyad" (cədvəldə hamıya görünür)
   company TEXT,                   -- şirkət kodu, məs. OYU
   score INTEGER NOT NULL,
   correct INTEGER NOT NULL,

@@ -54,14 +54,31 @@
           <ul class="g-rules">
             <li>Hər düzgün cavab: 10 xal</li>
             <li>Ardıcıl 3 düzgün cavabdan sonra: hər cavaba +5 bonus</li>
-            <li>Sonda ləqəblə ayın cədvəlinə düşə bilərsiniz</li>
+            <li>Sonda ad və soyadınızla ayın cədvəlinə düşürsünüz</li>
           </ul>
           <button class="btn btn-primary btn-lg" id="gStartBtn" type="button">Sınağa başla</button>
         </section>
 
+        <section class="game g-start" id="gWho" hidden>
+          <form class="g-who-form" id="gWhoForm" novalidate>
+            <h2>Özünüzü təqdim edin</h2>
+            <p>Ad və soyadınız ayın cədvəlində hamıya görünəcək.</p>
+            <div class="g-fields">
+              <label><span>Ad</span><input id="gName" name="given-name" maxlength="20" autocomplete="given-name" autocapitalize="words" spellcheck="false" required></label>
+              <label><span>Soyad</span><input id="gSurname" name="family-name" maxlength="20" autocomplete="family-name" autocapitalize="words" spellcheck="false" required></label>
+              <div class="g-wide">
+                <label><span>Şirkət kodu <span class="opt">(istəyə bağlı)</span></span><input id="gCompany" class="g-code" name="company-code" lang="en" maxlength="16" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="məs. OYU" aria-describedby="gCompanyHelp"></label>
+                <small class="g-help" id="gCompanyHelp">Şirkətinizin sizə verdiyi kodu daxil edin. Kod yoxdursa, boş saxlayın: ümumi cədvələ düşəcəksiniz.</small>
+              </div>
+            </div>
+            <p class="g-formmsg err" id="gWhoMsg" role="alert" hidden></p>
+            <button class="btn btn-primary btn-lg" id="gGo" type="submit">Başla</button>
+          </form>
+        </section>
+
         <section class="game" id="game" aria-live="polite" hidden>
           <div class="g-top">
-            <span id="gStep">1 / 5</span>
+            <span id="gStep">1 / 10</span>
             <span class="g-points" id="gPoints">0 xal</span>
             <ol class="g-dots" id="gDots" aria-hidden="true"></ol>
           </div>
@@ -88,16 +105,15 @@
           <div class="g-badge" id="gBadge" hidden></div>
           <div class="g-score"><span id="gScore">0</span><small> xal</small></div>
           <p class="g-msgline" id="gResultText"></p>
-          <form class="g-form" id="gForm" novalidate>
-            <h2>Cədvələ düşün</h2>
-            <div class="g-fields">
-              <label>Ləqəb <input id="gNick" maxlength="20" autocomplete="nickname" placeholder="məs. Diqqətli Pişik" required></label>
-              <label>Şirkət kodu <span class="opt">(istəyə bağlı)</span> <input id="gCompany" maxlength="16" autocomplete="off" placeholder="məs. OYU"></label>
+          <div class="g-form g-saved" id="gSaved">
+            <p class="g-player" id="gPlayer"></p>
+            <p class="g-formmsg" id="gSaveMsg" role="status"></p>
+            <div class="g-savebar">
+              <button class="btn btn-sm btn-primary" id="gRetry" type="button" hidden>Yenidən cəhd et</button>
+              <a class="btn btn-sm btn-ghost" href="#cedvel">Cədvələ bax</a>
+              <button class="btn btn-sm btn-ghost" id="gOther" type="button">Başqa oyunçu</button>
             </div>
-            <p class="g-note">Həqiqi adınızı yazmayın. Yalnız ləqəb, şirkət kodu və xal saxlanılır.</p>
-            <button class="btn btn-primary" id="gSave" type="submit">Cədvələ yaz</button>
-            <p class="g-formmsg" id="gFormMsg" role="status" hidden></p>
-          </form>
+          </div>
           <h2>Ən vacib 3 qayda</h2>
           <ol class="reasons">
             <li>SMS kodunu heç kimə deməyin, bank əməkdaşına da.</li>
@@ -109,6 +125,7 @@
             <button class="btn btn-ghost" id="gShare" type="button">Dostuna göndər</button>
             <a class="btn btn-ghost" href="/#yoxla">Şübhəli mesajı yoxla</a>
           </div>
+          <p class="error" id="gAgainMsg" role="alert" hidden></p>
           <p class="meta" id="gShareNote" hidden></p>
         </section>
       </div>

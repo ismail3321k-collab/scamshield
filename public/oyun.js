@@ -1,4 +1,5 @@
 // "Təhlükəni aşkar et" oyunu: suallar serverdən gəlir, cavab və izah yalnız cavab verdikdən sonra, xal serverdə hesablanır.
+// Axın: «Sınağa başla» → ad, soyad, şirkət kodu → 10 sual → nəticə avtomatik ayın cədvəlinə yazılır.
 import { confetti } from "/confetti.js";
 const $ = (id) => document.getElementById(id);
 const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -9,9 +10,16 @@ const store = {
   set(k, v) { try { localStorage.setItem(k, v); } catch { /* yox */ } },
 };
 
-let session = null, i = 0, score = 0, correctCount = 0, answered = false, busy = false;
+let session = null, i = 0, score = 0, correctCount = 0, answered = false, busy = false, starting = false, saving = false;
 const results = [];
-let company = (new URLSearchParams(location.search).get("kod") || store.get("ayiq-company")).toUpperCase().slice(0, 16);
+// Oyunçu: son yazılan ad / soyad / kod yadda qalır; linkdəki ?kod= (məs. /oyun?kod=OYU) üstündür
+const player = {
+  name: store.get("ayiq-ad"),
+  surname: store.get("ayiq-soyad"),
+  company: (new URLSearchParams(location.search).get("kod") || store.get("ayiq-company")).trim().toUpperCase().slice(0, 16),
+};
+// Cədvəldə vurğulanan sətir: bu cihazda sonuncu oynayan
+let me = { nick: player.name && player.surname ? `${player.name} ${player.surname}` : "", company: store.get("ayiq-company") };
 
 function el(tag, cls, text) {
   const e = document.createElement(tag);
@@ -21,9 +29,14 @@ function el(tag, cls, text) {
 }
 
 async function api(path, body) {
-  const res = await fetch(path, body ? { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify(body) } : { cache: "no-store" });
+  let res;
+  try {
+    res = await fetch(path, body ? { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify(body) } : { cache: "no-store" });
+  } catch {
+    throw Object.assign(new Error("Bağlantı xətası. İnterneti yoxlayıb yenidən cəhd edin."), { status: 0 });
+  }
   const d = await res.json().catch(() => ({}));
-  if (!res.ok) throw new Error(d.error || "Bağlantı xətası. Yenidən cəhd edin.");
+  if (!res.ok) throw Object.assign(new Error(d.error || "Bağlantı xətası. Yenidən cəhd edin."), { status: res.status, field: d.field });
   return d;
 }
 
@@ -76,6 +89,92 @@ function swap(node) {
   node.classList.remove("swap");
   void node.offsetWidth;
   node.classList.add("swap");
+}
+
+function scrollTo(node, block = "start") {
+  node.scrollIntoView({ behavior: reduced ? "auto" : "smooth", block });
+}
+
+// Oyunçu forması: ad, soyad, istəyə bağlı şirkət kodu
+const FIELDS = { name: "gName", surname: "gSurname", company: "gCompany" };
+
+function clearWhoError() {
+  $("gWhoMsg").hidden = true;
+  Object.values(FIELDS).forEach((id) => $(id).removeAttribute("aria-invalid"));
+}
+
+function whoError(text, field) {
+  const msg = $("gWhoMsg");
+  msg.textContent = text;
+  msg.hidden = false;
+  const input = $(FIELDS[field]);
+  if (input) {
+    input.setAttribute("aria-invalid", "true");
+    input.focus({ preventScroll: true });
+  }
+  scrollTo($("gWho"), "nearest");
+}
+
+function openWho(newPlayer = false) {
+  if (newPlayer) { player.name = ""; player.surname = ""; }
+  $("gName").value = player.name;
+  $("gSurname").value = player.surname;
+  $("gCompany").value = player.company;
+  clearWhoError();
+  $("gStart").hidden = true;
+  $("game").hidden = true;
+  $("gResult").hidden = true;
+  $("gWho").hidden = false;
+  swap($("gWho"));
+  const first = !player.name ? $("gName") : !player.surname ? $("gSurname") : $("gGo");
+  first.focus({ preventScroll: true });
+  scrollTo($("gWho"), "nearest");
+}
+
+// Yeni tur: ad serverdə əvvəlcədən yoxlanılır (səhv olsa, dərhal deyirik), sonra 10 sual gəlir
+async function startRound(who, btn, msg) {
+  if (starting) return;
+  starting = true;
+  const label = btn.textContent;
+  btn.disabled = true;
+  btn.textContent = "Yüklənir…";
+  msg.hidden = true;
+  let d;
+  try {
+    d = await api("/api/quiz/start", who);
+  } catch (e) {
+    starting = false;
+    btn.disabled = false;
+    btn.textContent = label;
+    if (e.field) {
+      if ($("gWho").hidden) openWho();
+      whoError(e.message, e.field);
+    } else {
+      msg.textContent = e.message;
+      msg.hidden = false;
+    }
+    return;
+  }
+  starting = false;
+  btn.disabled = false;
+  btn.textContent = label;
+  Object.assign(player, who, d.player ? { name: d.player.name, surname: d.player.surname, company: d.player.company } : {});
+  store.set("ayiq-ad", player.name);
+  store.set("ayiq-soyad", player.surname);
+  store.set("ayiq-company", player.company);
+  if ($("bCompany").value !== player.company) loadBoard(player.company);
+  session = d;
+  results.length = 0;
+  i = 0;
+  score = 0;
+  correctCount = 0;
+  $("gStart").hidden = true;
+  $("gWho").hidden = true;
+  $("gResult").hidden = true;
+  $("game").hidden = false;
+  setPoints(0);
+  show();
+  scrollTo($("game"));
 }
 
 function show() {
@@ -152,12 +251,15 @@ function countUp(node, to) {
   requestAnimationFrame(step);
 }
 
+const label = (nick, code) => nick + (code ? ` · ${code}` : "");
+
 function finish() {
   const total = session.questions.length;
   $("game").hidden = true;
   const r = $("gResult");
   r.hidden = false;
   $("gShareNote").hidden = true;
+  $("gAgainMsg").hidden = true;
   countUp($("gScore"), score);
   const badge = correctCount === total ? "🏅 Fırıldaq ovçusu" : correctCount >= total - 1 ? "🥈 Diqqətli oyunçu" : "📚 Bir az məşq lazımdır";
   $("gBadge").textContent = badge;
@@ -170,34 +272,41 @@ function finish() {
       ? "Yaxşıdır, amma bir tələ sizi aldada bilərdi. Şübhəli mesajı həmişə əvvəl ScamShield-də yoxlayın."
       : "Diqqət: fırıldaqçılar çox inandırıcı yazır. Şübhəli mesajı həmişə əvvəl ScamShield-də yoxlayın.";
   $("gResultText").textContent = `${total} mesajdan ${correctCount} düzgün. ${verdict}`;
-  $("gNick").value = store.get("ayiq-nick");
-  $("gCompany").value = company;
-  $("gForm").hidden = false;
-  $("gSave").disabled = false;
-  $("gFormMsg").hidden = true;
+  $("gPlayer").textContent = label(`${player.name} ${player.surname}`, player.company);
   swap(r);
-  r.scrollIntoView({ behavior: reduced ? "auto" : "smooth", block: "start" });
+  scrollTo(r);
+  save();
 }
 
-async function newRound() {
-  $("gResult").hidden = true;
-  $("game").hidden = false;
-  $("gText").textContent = "Yüklənir…";
-  $("gScam").disabled = true;
-  $("gSafe").disabled = true;
-  $("gFeedback").hidden = true;
-  results.length = 0;
-  i = 0;
-  score = 0;
-  correctCount = 0;
-  setPoints(0);
+// Nəticə avtomatik cədvələ yazılır; şəbəkə xətasında «Yenidən cəhd et»
+async function save() {
+  if (saving) return;
+  saving = true;
+  const msg = $("gSaveMsg");
+  msg.textContent = "Cədvələ yazılır…";
+  msg.className = "g-formmsg";
+  $("gRetry").hidden = true;
   try {
-    session = await api("/api/quiz/start", {});
+    const d = await api("/api/quiz/finish", { id: session.id, name: player.name, surname: player.surname, company: player.company });
+    me = { nick: d.nick, company: d.company || "" };
+    msg.textContent = (d.rank ? `Cədvələ yazıldı! Yeriniz: ${d.rank}.` : "Cədvələ yazıldı!")
+      + (d.best > d.score ? ` Cədvəldə ən yaxşı nəticəniz göstərilir: ${d.best} xal.` : "");
+    msg.className = "g-formmsg ok";
+    renderBoard(d, { rank: d.rank, nick: d.nick, company: d.company, score: d.best ?? d.score });
   } catch (e) {
-    $("gText").textContent = e.message;
-    return;
+    if (e.status === 409) {
+      // Əvvəlki cəhd serverə çatıb: nəticə artıq yazılıb
+      me = { nick: `${player.name} ${player.surname}`, company: player.company };
+      msg.textContent = "Cədvələ yazıldı!";
+      msg.className = "g-formmsg ok";
+      loadBoard(player.company);
+    } else {
+      msg.textContent = e.message;
+      msg.className = "g-formmsg err";
+      $("gRetry").hidden = !(e.status === 0 || e.status === 429 || e.status >= 500);
+    }
   }
-  show();
+  saving = false;
 }
 
 // Cədvəl
@@ -206,27 +315,43 @@ function monthLabel(m) {
   return MONTHS[Number(mm) - 1] ? `${MONTHS[Number(mm) - 1]} ${y}` : "";
 }
 
-function renderBoard(d, me) {
+function boardRow(x, code) {
+  const li = el("li", me.nick && x.nick === me.nick && code === (me.company || "") ? "me" : "");
+  const row = el("div", "b-row");
+  row.append(el("span", "b-nick", label(x.nick, code)), el("span", "b-score", `${x.score} xal`));
+  li.append(row);
+  return li;
+}
+
+// mine: cədvələ indicə yazılan oyunçu; ilk 10-dan kənardadırsa, öz yeri ilə sonda göstərilir
+function renderBoard(d, mine = null) {
   $("bTitle").textContent = d.company ? `«${d.company}» cədvəli · ${monthLabel(d.month)}` : `Ümumi cədvəl · ${monthLabel(d.month)}`;
   const list = d.leaders || [];
   const top = $("bTop");
   if (list.length) {
-    top.replaceChildren(el("span", "b-crown", "🏆"), el("span", "", "Ayın ən ayıq oyunçusu: "), el("b", "", list[0].nick), el("span", "", ` · ${list[0].score} xal`));
+    top.replaceChildren(el("span", "b-crown", "🏆"), el("span", "", "Ayın ən ayıq oyunçusu: "), el("b", "", label(list[0].nick, d.company ? "" : list[0].company)), el("span", "", ` · ${list[0].score} xal`));
     top.hidden = false;
   } else top.hidden = true;
-  $("bList").replaceChildren(...list.map((x) => {
-    const li = el("li", x.nick === me ? "me" : "");
-    li.append(el("span", "b-nick", x.nick + (!d.company && x.company ? ` · ${x.company}` : "")), el("span", "b-score", `${x.score} xal`));
-    return li;
-  }));
-  [...$("bList").children].forEach((li, k) => { li.style.animationDelay = reduced ? "0ms" : `${k * 60}ms`; li.classList.add("slide"); });
+  const rows = list.map((x) => boardRow(x, d.company || x.company || ""));
+  if (mine?.rank && list.length && mine.rank > list.length) {
+    if (mine.rank > list.length + 1) {
+      const gap = el("li", "b-gap", "…");
+      gap.setAttribute("aria-hidden", "true");
+      rows.push(gap);
+    }
+    const li = boardRow({ nick: mine.nick, score: mine.score }, d.company || mine.company || "");
+    li.value = mine.rank;
+    rows.push(li);
+  }
+  $("bList").replaceChildren(...rows);
+  rows.forEach((li, k) => { li.style.animationDelay = reduced ? "0ms" : `${k * 60}ms`; li.classList.add("slide"); });
   $("bEmpty").hidden = list.length > 0;
   $("bMeta").textContent = d.players ? `Bu ay cədvələ düşən: ${d.players}` : "";
   $("bCompany").value = d.company || "";
 }
 
-async function loadBoard(code, me) {
-  try { renderBoard(await api(`/api/quiz/leaders?company=${encodeURIComponent(code || "")}`), me); } catch { /* cədvəl açılmadı */ }
+async function loadBoard(code) {
+  try { renderBoard(await api(`/api/quiz/leaders?company=${encodeURIComponent(code || "")}`)); } catch { /* cədvəl açılmadı */ }
 }
 
 $("gScam").addEventListener("click", () => answer(true));
@@ -235,42 +360,39 @@ $("gNext").addEventListener("click", () => {
   i++;
   if (i < session.questions.length) {
     show();
-    $("game").scrollIntoView({ behavior: reduced ? "auto" : "smooth", block: "start" });
+    scrollTo($("game"));
   } else finish();
 });
-$("gAgain").addEventListener("click", newRound);
 
-$("gForm").addEventListener("submit", async (e) => {
+// «Sınağa başla» → oyunçu forması
+$("gStartBtn").addEventListener("click", () => openWho());
+
+$("gWhoForm").addEventListener("submit", (e) => {
   e.preventDefault();
-  const msg = $("gFormMsg");
-  const nick = $("gNick").value.trim();
-  const code = $("gCompany").value.trim().toUpperCase();
-  $("gSave").disabled = true;
-  try {
-    const d = await api("/api/quiz/finish", { id: session.id, nick, company: code });
-    store.set("ayiq-nick", d.nick);
-    if (code) { company = code; store.set("ayiq-company", code); }
-    msg.textContent = d.rank ? `Cədvələ yazıldı! Yeriniz: ${d.rank}.` : "Cədvələ yazıldı!";
-    msg.className = "g-formmsg ok";
-    $("gForm").querySelectorAll("input").forEach((x) => { x.disabled = true; });
-    renderBoard(d, d.nick);
-    $("cedvel").scrollIntoView({ behavior: reduced ? "auto" : "smooth", block: "start" });
-  } catch (err) {
-    msg.textContent = err.message;
-    msg.className = "g-formmsg err";
-    $("gSave").disabled = false;
-  }
-  msg.hidden = false;
+  clearWhoError();
+  const who = {
+    name: $("gName").value.trim(),
+    surname: $("gSurname").value.trim(),
+    company: $("gCompany").value.trim().toUpperCase(),
+  };
+  if (!who.name) return whoError("Adınızı yazın.", "name");
+  if (!who.surname) return whoError("Soyadınızı yazın.", "surname");
+  startRound(who, $("gGo"), $("gWhoMsg"));
 });
+Object.values(FIELDS).forEach((id) => $(id).addEventListener("input", () => $(id).removeAttribute("aria-invalid")));
+
+// «Yenidən oyna»: eyni adla yeni tur; «Başqa oyunçu»: formanı boş adla açır (şirkət kodu qalır)
+$("gAgain").addEventListener("click", () => startRound({ name: player.name, surname: player.surname, company: player.company }, $("gAgain"), $("gAgainMsg")));
+$("gOther").addEventListener("click", () => openWho(true));
+$("gRetry").addEventListener("click", save);
 
 $("bFilter").addEventListener("submit", (e) => {
   e.preventDefault();
-  const code = $("bCompany").value.trim().toUpperCase();
-  loadBoard(code, store.get("ayiq-nick"));
+  loadBoard($("bCompany").value.trim().toUpperCase());
 });
 
 $("gShare").addEventListener("click", async () => {
-  const url = location.origin + "/oyun" + (company ? `?kod=${encodeURIComponent(company)}` : "");
+  const url = location.origin + "/oyun" + (player.company ? `?kod=${encodeURIComponent(player.company)}` : "");
   const text = `Fırıldaq mesajını tanıya bilərsən? Mən ${score} xal topladım. Sən də yoxla:`;
   const note = $("gShareNote");
   if (navigator.share) {
@@ -285,13 +407,4 @@ $("gShare").addEventListener("click", async () => {
   note.hidden = false;
 });
 
-// Yenidən oynayanda forma inputları yenidən aktiv olsun
-$("gAgain").addEventListener("click", () => $("gForm").querySelectorAll("input").forEach((x) => { x.disabled = false; }));
-
-// Oyun «Oyuna başla» düyməsi ilə başlayır
-$("gStartBtn").addEventListener("click", () => {
-  $("gStart").hidden = true;
-  newRound();
-  $("game").scrollIntoView({ behavior: reduced ? "auto" : "smooth", block: "nearest" });
-});
-loadBoard(company, store.get("ayiq-nick"));
+loadBoard(player.company);
