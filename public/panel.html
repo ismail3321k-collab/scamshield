@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="az">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bank və CERT paneli — ScamShield</title>
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#0A0A0A">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="container hdr">
+    <a class="brand" href="/" aria-label="ScamShield — ana səhifə">
+      <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><path d="M16 3.5 6.5 7v7.4c0 6 3.9 11.2 9.5 13.1 5.6-1.9 9.5-7.1 9.5-13.1V7z" fill="#DC2626"/><path d="M16 3.5V27.5c5.6-1.9 9.5-7.1 9.5-13.1V7z" fill="#B91C1C"/><path d="m11.4 15.6 3.2 3.2 6-6.2" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span>ScamShield</span>
+    </a>
+    <span class="badge blue hdr-badge">Bank və CERT paneli</span>
+    <div class="hdr-actions">
+      <a class="btn btn-ghost btn-sm" href="/"><svg class="ic ic-sm" aria-hidden="true"><use href="/icons.svg#arrow-right"/></svg><span>Ana səhifə</span></a>
+    </div>
+  </div>
+</header>
+
+<main class="page">
+  <div class="container" style="max-width: 1060px">
+    <section id="login" class="card" hidden>
+      <h2>Panelə giriş</h2>
+      <form class="keyform" id="keyform">
+        <input id="key" type="password" autocomplete="off" placeholder="Panel açarı" aria-label="Panel açarı">
+        <button class="btn btn-primary" type="submit">Daxil ol</button>
+      </form>
+      <p class="error" id="loginErr" hidden></p>
+    </section>
+
+    <div id="app" hidden>
+      <div class="panel-head">
+        <h1>Erkən xəbərdarlıq</h1>
+        <span class="live" id="live">Yenilənir…</span>
+      </div>
+      <div class="stats">
+        <div class="stat"><b id="sTotal">0</b><span>Bu gün yoxlanılan mesaj</span></div>
+        <div class="stat red"><b id="sHigh">0</b><span>Yüksək riskli</span></div>
+        <div class="stat"><b id="sCamp">0</b><span>Aktiv kampaniya (24 saat)</span></div>
+      </div>
+
+      <section class="card">
+        <h2>Kampaniyalar</h2>
+        <div id="camps"></div>
+      </section>
+
+      <section class="card">
+        <h2>Moderasiya növbəsi: icma bildirişləri</h2>
+        <p class="empty" style="margin-bottom:12px">Saytdakı «Şübhəli mənbə haqqında məlumat ver» formasından gələn bildirişlər. Avtomatik dərc olunmur: yoxlayın, sonra təsdiqləyin və ya rədd edin.</p>
+        <div id="queue"><p class="empty">Yüklənir…</p></div>
+      </section>
+
+      <section class="card">
+        <h2>Son yoxlamalar</h2>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Vaxt</th><th>Kanal</th><th>Bal</th><th>Brend</th><th class="hide-sm">Domen</th></tr></thead>
+            <tbody id="recent"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>Hesabat paketi</h2>
+        <p class="empty" style="margin-bottom:12px">Kampaniya siyahısı: domenlər, brendlər, ilk və son görülmə vaxtı. Mesaj mətni daxil deyil.</p>
+        <div class="tools">
+          <button class="btn btn-ghost" id="dlCsv" type="button">CSV yüklə</button>
+          <button class="btn btn-ghost" id="dlJson" type="button">JSON yüklə</button>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>Dəqiqlik</h2>
+        <div id="metrics" class="empty">Yüklənir…</div>
+      </section>
+    </div>
+  </div>
+</main>
+<footer class="site-footer">
+  <div class="container">
+    <div class="foot-bottom solo"><span>ScamShield · OYU CyberAI Hackathon 2026</span><span>Mesaj mətni saxlanılmır</span></div>
+  </div>
+</footer>
+<script type="module" src="/panel.js"></script>
+</body>
+</html>

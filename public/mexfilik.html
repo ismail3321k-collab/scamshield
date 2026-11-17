@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="az">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Məxfilik siyasəti və istifadə şərtləri — ScamShield</title>
+<meta name="description" content="ScamShield hansı məlumatları emal edir, nəyi saxlayır və nəyi saxlamır. İstifadə şərtləri və əlaqə.">
+<meta name="theme-color" content="#0A0A0A">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Əsas məzmuna keç</a>
+<header class="site-header">
+  <div class="container hdr">
+    <a class="brand" href="/" aria-label="ScamShield — ana səhifə">
+      <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><path d="M16 3.5 6.5 7v7.4c0 6 3.9 11.2 9.5 13.1 5.6-1.9 9.5-7.1 9.5-13.1V7z" fill="#DC2626"/><path d="M16 3.5V27.5c5.6-1.9 9.5-7.1 9.5-13.1V7z" fill="#B91C1C"/><path d="m11.4 15.6 3.2 3.2 6-6.2" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span>ScamShield</span>
+    </a>
+    <nav class="nav" id="mainNav" aria-label="Əsas menyu">
+      <a href="/#top">Ana səhifə</a>
+      <a href="/#yoxla">Təhlil</a>
+      <a href="/#tehdidler">Aktiv təhdidlər</a>
+      <a href="/#akademiya">Akademiya</a>
+      <a href="/oyun">Özünüzü sınayın</a>
+      <a href="/kampaniya">Fişinq Testi</a>
+      <a href="/#haqqimizda">Haqqımızda</a>
+      <div class="nav-mobile-extra">
+        <a class="btn btn-secondary" href="https://t.me/scamshield_az_bot" target="_blank" rel="noopener noreferrer"><svg class="ic ic-sm" aria-hidden="true"><use href="/icons.svg#send"/></svg><span>Telegram botu</span></a>
+        <a class="btn btn-primary" href="/#yoxla">Mesajı yoxla</a>
+      </div>
+    </nav>
+    <div class="hdr-actions">
+      <a class="btn btn-ghost btn-icon hdr-tg" href="https://t.me/scamshield_az_bot" target="_blank" rel="noopener noreferrer" aria-label="Telegram botu" title="Telegram botu"><svg class="ic" aria-hidden="true"><use href="/icons.svg#send"/></svg></a>
+      <a class="btn btn-primary btn-sm hdr-cta" href="/#yoxla">Mesajı yoxla</a>
+      <button class="btn btn-ghost btn-icon nav-toggle" id="navToggle" type="button" aria-expanded="false" aria-controls="mainNav" aria-label="Menyunu aç"><svg class="ic" aria-hidden="true"><use href="/icons.svg#menu"/></svg></button>
+    </div>
+  </div>
+</header>
+
+<main id="main" class="page">
+  <div class="container narrow">
+    <div class="page-head">
+      <p class="eyebrow"><svg class="ic ic-sm" aria-hidden="true"><use href="/icons.svg#lock"/></svg><span>Hüquqi məlumat</span></p>
+      <h1>Məxfilik siyasəti və istifadə şərtləri</h1>
+      <p>ScamShield saytının və Telegram botunun hansı məlumatları necə emal etdiyini sadə dillə izah edirik. Son yenilənmə: 17 noyabr 2026.</p>
+      <div class="toc">
+        <a class="btn btn-secondary btn-sm" href="#mexfilik">Məxfilik siyasəti</a>
+        <a class="btn btn-ghost btn-sm" href="#serter">İstifadə şərtləri</a>
+        <a class="btn btn-ghost btn-sm" href="#elaqe">Əlaqə</a>
+      </div>
+    </div>
+
+    <article class="prose">
+      <h2 id="mexfilik">Məxfilik siyasəti</h2>
+      <h3>Hansı məlumatları emal edirik?</h3>
+      <ul>
+        <li>Yoxlamaq üçün göndərdiyiniz mətn, link, telefon nömrəsi və ya şəkildən oxunan mətn.</li>
+        <li>Telegram botunda: göndərdiyiniz mesaj və ya səsli mesaj (səs mətnə çevrilir) və cavab göndərmək üçün Telegram-ın verdiyi texniki identifikator.</li>
+        <li>«Yaxınını qoru» qoşulanda: iki Telegram hesabının identifikatoru, Telegram-dakı adı və sizin verdiyiniz ad (məsələn, «Anam»). Bu, xəbərdarlığı doğru adama göndərmək üçün lazımdır.</li>
+        <li>Nömrə bildirişləri: nömrənin özü yox, yalnız onun HMAC izi (gizli açarla şifrələnmiş, geri açılmayan iz) və bildirən şəxsin eyni cür izi.</li>
+        <li>İcma bildirişləri: bildirdiyiniz mənbə (nömrə, sayt və ya mesaj; mesajdakı kart, telefon və kodlar gizlədilir), qısa izahınız və IP ünvanınızın HMAC izi (spamın qarşısını almaq üçün).</li>
+        <li>«Təhlükəni aşkar et» oyunu: ləqəb, istəyə bağlı şirkət kodu və xal.</li>
+      </ul>
+
+      <h3>Nəyi saxlamırıq?</h3>
+      <ul>
+        <li>Yoxlanılan mesajın mətnini saxlamırıq.</li>
+        <li>Şəkilləri serverə göndərmirik: QR kod və şəkildəki mətn brauzerinizdə oxunur, serverə yalnız oxunan mətn yoxlama üçün gedir.</li>
+        <li>Səsli mesaj mətnə çevrildikdən sonra nə səs, nə də mətn saxlanılır.</li>
+        <li>Telefon nömrəsini açıq şəkildə saxlamırıq.</li>
+      </ul>
+
+      <h3>Anonim statistika</h3>
+      <p>Hər yoxlamadan yalnız bunlar qalır: vaxt, kanal (sayt, Telegram, QR, səs), risk balı və səviyyəsi, tapılan əlamətlərin kodları, brendin adı və şübhəli linkin domeni. Mətn yoxdur. Bu məlumatla eyni fırıldaq kampaniyasını tanıyır, «Aktiv kibertəhdidlər» bölməsində və bank / CERT panelində göstəririk.</p>
+
+      <h3>Üçüncü tərəflər</h3>
+      <ul>
+        <li><strong>Cloudflare:</strong> sayt, verilənlər bazası və dil modeli (Workers AI) Cloudflare infrastrukturunda işləyir. Dil modelinə yalnız şəxsi məlumatları gizlədilmiş mətn göndərilir.</li>
+        <li><strong>VirusTotal:</strong> yalnız linkin domen adı göndərilir.</li>
+        <li><strong>Domen reyestrləri (RDAP):</strong> saytın yaşını öyrənmək üçün yalnız domen adı göndərilir.</li>
+        <li><strong>Yoxlanılan sayt:</strong> şübhəli linki bizim təcrid olunmuş brauzerimiz açır. Sayt sizin cihazınızı və IP ünvanınızı görmür.</li>
+        <li><strong>Telegram:</strong> botdan istifadə edəndə mesajlar Telegram vasitəsilə ötürülür və Telegram-ın öz qaydalarına tabedir.</li>
+      </ul>
+      <p>Saytda reklam, analitika və izləmə kodu yoxdur.</p>
+
+      <h3>Texniki jurnallar</h3>
+      <p>Cloudflare xidmətin işləməsi üçün qısa müddətli texniki jurnallar (sorğunun vaxtı, ünvanı, xəta qeydləri) saxlaya bilər. Mesajın mətni bu jurnallara yazılmır.</p>
+
+      <h3>Nəyi göndərməməlisiniz?</h3>
+      <p>Öz kart nömrənizi, CVV-ni, PIN-i, şifrəni, SMS kodunu və şəxsiyyət vəsiqəsinin məlumatlarını göndərməyin. Kart nömrəsi, telefon və kodlar avtomatik gizlədilsə də, yoxlamaq üçün fırıldaq mesajının özü kifayətdir.</p>
+
+      <h3>Məlumatın silinməsi</h3>
+      <p>Mesaj mətnini saxlamadığımız üçün silinəcək şəxsi məlumat adətən olmur. «Yaxınını qoru» bağlantısını botda <strong>/yaxinlar</strong> əmri ilə istənilən vaxt silə bilərsiniz. Oyun cədvəlindən ləqəbin silinməsi üçün bizə yazın.</p>
+
+      <h2 id="serter">İstifadə şərtləri</h2>
+      <ul>
+        <li>ScamShield məlumat verən köməkçi alətdir. Nəticə risk qiymətləndirməsidir, zəmanət deyil; son qərar sizindir.</li>
+        <li>«Təhlükə əlaməti yoxdur» nəticəsi mesajın və ya saytın təhlükəsiz olduğunu təsdiq etmir.</li>
+        <li>ScamShield bank, polis və ya dövlət qurumu deyil və onların adından danışmır. Təcili hallarda 102 nömrəsinə və bankınızın rəsmi nömrəsinə müraciət edin.</li>
+        <li>Xidmətdən sui-istifadə qadağandır: avtomatlaşdırılmış kütləvi sorğular, başqalarının şəxsi məlumatlarının göndərilməsi və bilərəkdən yanlış bildirişlər. Sorğuların sayı məhdudlaşdırılır.</li>
+        <li>İcma bildirişləri moderatorun yoxlamasından keçir. Yoxlanılmamış bildiriş heç yerdə dərc olunmur.</li>
+        <li>Xidmət olduğu kimi təqdim olunur. ScamShield OYU CyberAI Hackathon 2026 çərçivəsində hazırlanmış prototipdir və dəyişə bilər.</li>
+      </ul>
+
+      <h2 id="elaqe">Əlaqə</h2>
+      <ul>
+        <li><strong>Telegram botu:</strong> <a class="tg-link" href="https://t.me/scamshield_az_bot" target="_blank" rel="noopener noreferrer">@scamshield_az_bot</a></li>
+        <li><strong>Komanda:</strong> Cyber Force · OYU CyberAI Hackathon 2026</li>
+        <li><strong>Saxta saytı dövlətə bildirmək:</strong> <a href="https://blacklist.gov.az/report" target="_blank" rel="noopener noreferrer">blacklist.gov.az/report</a></li>
+        <li><strong>Təcili hallarda:</strong> Polis 102 · Kibertəhlükəsizlik xətti 1654 · bankınızın kartın arxasındakı nömrəsi.</li>
+      </ul>
+    </article>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="foot-bottom solo">
+      <span>© 2026 ScamShield · Cyber Force · OYU CyberAI Hackathon 2026</span>
+      <span><a href="/">Ana səhifə</a> · <a href="/#yoxla">Mesajı yoxla</a> · <a href="/oyun">Özünüzü sınayın</a></span>
+    </div>
+  </div>
+</footer>
+<script type="module" src="/nav.js"></script>
+<script type="module" src="/motion.js"></script>
+</body>
+</html>

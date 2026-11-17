@@ -1,0 +1,10 @@
+.secrets.local
+node_modules/
+.wrangler/
+.dev.vars
+public_live/
+wrangler.live.toml
+public_v3/
+*.log
+Thumbs.db
+.DS_Store

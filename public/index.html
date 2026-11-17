@@ -1,0 +1,544 @@
+<!doctype html>
+<html lang="az">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ScamShield — Rəqəmsal təhlükələrə qarşı ağıllı müdafiə</title>
+<meta name="description" content="Şübhəli SMS, WhatsApp mesajı, link, telefon nömrəsi və ya QR kodu bir neçə saniyədə yoxlayın. ScamShield təhlükəni Azərbaycan dilində izah edir və nə etməli olduğunuzu deyir.">
+<meta name="theme-color" content="#0A0A0A">
+<meta property="og:title" content="ScamShield — Rəqəmsal təhlükələrə qarşı ağıllı müdafiə">
+<meta property="og:description" content="Linkə klikləməzdən əvvəl yoxlayın: SMS, WhatsApp, link, nömrə və QR kod təhlili.">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Əsas məzmuna keç</a>
+
+<header class="site-header">
+  <div class="container hdr">
+    <a class="brand" href="/" aria-label="ScamShield — ana səhifə">
+      <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><path d="M16 3.5 6.5 7v7.4c0 6 3.9 11.2 9.5 13.1 5.6-1.9 9.5-7.1 9.5-13.1V7z" fill="#DC2626"/><path d="M16 3.5V27.5c5.6-1.9 9.5-7.1 9.5-13.1V7z" fill="#B91C1C"/><path d="m11.4 15.6 3.2 3.2 6-6.2" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span>ScamShield</span>
+    </a>
+    <nav class="nav" id="mainNav" aria-label="Əsas menyu">
+      <a href="/#top">Ana səhifə</a>
+      <a href="/#yoxla">Təhlil</a>
+      <a href="/#tehdidler">Aktiv təhdidlər</a>
+      <a href="/#akademiya">Akademiya</a>
+      <a href="/oyun">Özünüzü sınayın</a>
+      <a href="/kampaniya">Fişinq Testi</a>
+      <a href="/#haqqimizda">Haqqımızda</a>
+      <div class="nav-mobile-extra">
+        <a class="btn btn-secondary tg-link" href="https://t.me/scamshield_az_bot" target="_blank" rel="noopener noreferrer"><svg class="ic ic-sm" aria-hidden="true"><use href="/icons.svg#send"/></svg><span>Telegram botu</span></a>
+        <a class="btn btn-primary" href="/#yoxla">Mesajı yoxla</a>
+      </div>
+    </nav>
+    <div class="hdr-actions">
+      <a class="btn btn-ghost btn-icon hdr-tg tg-link" href="https://t.me/scamshield_az_bot" target="_blank" rel="noopener noreferrer" aria-label="Telegram botu" title="Telegram botu"><svg class="ic" aria-hidden="true"><use href="/icons.svg#send"/></svg></a>
+      <a class="btn btn-primary btn-sm hdr-cta" href="/#yoxla">Mesajı yoxla</a>
+      <button class="btn btn-ghost btn-icon nav-toggle" id="navToggle" type="button" aria-expanded="false" aria-controls="mainNav" aria-label="Menyunu aç"><svg class="ic" aria-hidden="true"><use href="/icons.svg#menu"/></svg></button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+<!-- ================= HERO + TƏHLİL ================= -->
+<section class="hero" id="top" aria-labelledby="heroTitle">
+  <div class="container hero-grid">
+    <div class="hero-text">
+      <p class="eyebrow"><svg class="ic ic-sm" aria-hidden="true"><use href="/icons.svg#shield"/></svg><span>Azərbaycan üçün fırıldaq qalxanı</span></p>
+      <h1 id="heroTitle">Rəqəmsal təhlükələrə qarşı <span class="accent">ağıllı müdafiə.</span></h1>
+      <p class="hero-sub">Şübhəli mesaj gəlib? Linkə klikləməzdən əvvəl ScamShield ilə yoxlayın.</p>
+      <p class="hero-desc">SMS, WhatsApp mesajlarını, telefon nömrələrini, veb-saytları və QR kodlarını analiz edin. Potensial təhlükələri müəyyənləşdirin və rəqəmsal təhlükəsizliyinizi qoruyun.</p>
+    </div>
+
+    <ul class="trust">
+      <li><span class="t-ic"><svg class="ic" aria-hidden="true"><use href="/icons.svg#zap"/></svg></span><div><b>Real vaxtda yoxlama</b><span>Nəticə bir neçə saniyəyə hazır olur. Linkdəki sayt elə həmin an açılıb yoxlanılır.</span></div></li>
+      <li><span class="t-ic"><svg class="ic" aria-hidden="true"><use href="/icons.svg#cpu"/></svg></span><div><b>Süni intellekt dəstəyi</b><span>Azərbaycan dilli SMS-lər üzərində öyrədilmiş model və dil modeli birlikdə qiymətləndirir.</span></div></li>
+      <li><span class="t-ic"><svg class="ic" aria-hidden="true"><use href="/icons.svg#eye-off"/></svg></span><div><b>Məxfilik ön planda</b><span>Kart, telefon və kodlar yoxlamadan əvvəl gizlədilir. Mesajın mətni saxlanılmır.</span></div></li>
+    </ul>
+
+    <div class="an-card" id="yoxla" role="region" aria-labelledby="anTitle">
+      <div class="an-head">
+        <h2 id="anTitle"><svg class="ic" aria-hidden="true"><use href="/icons.svg#shield-check"/></svg><span>Təhlükə təhlili</span></h2>
+        <span class="badge blue">Pulsuz · qeydiyyatsız</span>
+      </div>
+      <div class="tabs" role="tablist" aria-label="Təhlil növü">
+        <button class="tab" role="tab" type="button" id="tab-msg" data-mode="msg" aria-selected="true" aria-controls="anPanel"><svg class="ic ic-sm" aria-hidden="true"><use href="/icons.svg#message"/></svg><span>Mesaj</span></button>
+        <button class="tab" role="tab" type="button" id="tab-url" data-mode="url" aria-selected="false" aria-controls="anPanel" tabindex="-1"><svg class="ic ic-sm" aria-hidden="true"><use href="/icons.svg#link"/></svg><span>Link</span></button>
+        <button class="tab" role="tab" type="button" id="tab-phone" data-mode="phone" aria-selected="false" aria-controls="anPanel" tabindex="-1"><svg class="ic ic-sm" aria-hidden="true"><use href="/icons.svg#phone"/></svg><span>Nömrə</span></button>
+        <button class="tab" role="tab" type="button" id="tab-qr" data-mode="qr" aria-selected="false" aria-controls="anPanel" tabindex="-1"><svg class="ic ic-sm" aria-hidden="true"><use href="/icons.svg#qr"/></svg><span>QR / şəkil</span></button>
+      </div>
+      <div id="anPanel" role="tabpanel" aria-labelledby="tab-msg">
+        <div class="an-field" id="textField">
+          <label class="label" for="msg" id="msgLabel">SMS və ya WhatsApp mesajı</label>
+          <textarea id="msg" class="textarea" rows="6" maxlength="2000" placeholder="Məsələn: Azərpoçt: Bağlamanız saxlanılıb, ünvanınızı 24 saat ərzində yeniləyin…" aria-describedby="msgHint" spellcheck="false"></textarea>
+          <div class="an-meta"><span id="msgHint">Mesajı olduğu kimi yapışdırın.</span><span id="count" aria-live="off">0 / 2000</span></div>
+        </div>
+        <div class="an-field" id="qrField" hidden>
+          <span class="label">QR kod və ya ekran şəkli</span>
+          <label class="drop" id="drop">
+            <input type="file" id="qr" accept="image/*" class="sr-only">
+            <svg class="ic" aria-hidden="true"><use href="/icons.svg#upload"/></svg>
+            <b>Şəkil seçin və ya bura atın</b>
+            <span>QR kod, SMS və ya WhatsApp ekran şəkli</span>
+          </label>
+          <div class="an-meta"><span>Şəkil cihazınızdan çıxmır: QR kod və mətn brauzerdə oxunur.</span></div>
+        </div>
+        <div class="an-actions" id="anActions">
+          <button id="check" class="btn btn-primary btn-lg" type="button"><svg class="ic" aria-hidden="true"><use href="/icons.svg#search"/></svg><span id="checkLabel">Təhlil et</span></button>
+        </div>
+      </div>
+      <div class="an-status">
+        <ol id="steps" class="steps" hidden aria-label="Təhlil mərhələləri"></ol>
+        <p id="stepsDone" class="status-line" role="status" hidden></p>
+        <p id="ocrStatus" class="status-line info" role="status" hidden></p>
+        <div class="alert-box" id="error" role="alert" hidden><svg class="ic" aria-hidden="true"><use href="/icons.svg#alert"/></svg><span id="errorText"></span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= NƏTİCƏ ================= -->
+<section class="results" id="netice" hidden aria-labelledby="resTitle">
+  <div class="container">
+    <div class="res-head">
+      <h2 id="resTitle" tabindex="-1"><svg class="ic" aria-hidden="true"><use href="/icons.svg#activity"/></svg><span>Təhlil nəticəsi</span></h2>
+      <a class="btn btn-ghost btn-sm" href="#yoxla" id="newCheck"><svg class="ic ic-sm" aria-hidden="true"><use href="/icons.svg#refresh"/></svg><span>Yeni yoxlama</span></a>
+    </div>
+
+    <div class="skeleton" id="resSkeleton" hidden aria-hidden="true">
+      <div class="sk sk-lg"></div>
+      <div class="sk-row"><div class="sk sk-md"></div><div class="sk sk-md"></div></div>
+    </div>
+
+    <div id="result" hidden>
+      <div class="card res-summary" id="sumCard">
+        <div class="gauge">
+          <svg viewBox="0 0 120 120" aria-hidden="true"><circle class="g-track" cx="60" cy="60" r="52"/><circle class="g-fill" id="gaugeFill" cx="60" cy="60" r="52"/></svg>
+          <div class="gauge-num"><b id="score">0</b><small>risk balı / 100</small></div>
+        </div>
+        <div class="sum-main">
+          <span class="badge" id="lvlBadge"><span class="dot"></span><span id="lvlText"></span></span>
+          <p class="sum-title" id="band"></p>
+          <p class="sum-sub" id="bandSub"></p>
+          <div class="scale">
+            <div class="scale-bar" id="scaleBar" aria-hidden="true"><span></span><span></span><span></span><span></span><i class="scale-mark" id="scaleMark"></i></div>
+            <div class="scale-legend">
+              <span><i class="sw-safe"></i>0–29 Təhlükə əlaməti yoxdur</span>
+              <span><i class="sw-sus"></i>30–69 Şübhəli</span>
+              <span><i class="sw-high"></i>70–89 Yüksək risk</span>
+              <span><i class="sw-crit"></i>90–100 Kritik</span>
+            </div>
+          </div>
+          <details class="score-help">
+            <summary><svg class="ic ic-sm" aria-hidden="true"><use href="/icons.svg#help"/></svg><span>Bal nəyi göstərir?</span></summary>
+            <p>Risk balı mesajda tapılan əlamətlərin (saxta domen, kod tələbi, tələsdirmə və s.) və öyrədilmiş modelin qiymətləndirməsinin birləşməsidir. Bu, faiz və ya ehtimal deyil: bal nə qədər yüksəkdirsə, fırıldaq əlamətləri bir o qədər çox və güclüdür. 70 və yuxarı bal güclü sübut deməkdir.</p>
+          </details>
+        </div>
+        <dl class="sum-facts">
+          <div><dt>Təhlil növü</dt><dd id="fType"></dd></div>
+          <div><dt>Tapılan göstərici</dt><dd id="fInd"></dd></div>
+          <div><dt>Gizlədilən məlumat</dt><dd id="fMask"></dd></div>
+          <div><dt>Təhlil vaxtı</dt><dd id="fTime"></dd></div>
+        </dl>
+      </div>
+
+      <div class="res-grid">
+        <div class="res-col">
+          <article class="card">
+            <div class="card-head"><h3><svg class="ic" aria-hidden="true"><use href="/icons.svg#shield-alert"/></svg><span>Təhdid göstəriciləri</span></h3><span class="count" id="indCount"></span></div>
+            <ul class="ind-list" id="reasons"></ul>
+          </article>
+          <article class="card" id="linksBlock" hidden>
+            <div class="card-head"><h3><svg class="ic" aria-hidden="true"><use href="/icons.svg#link"/></svg><span>Link hesabatı</span></h3></div>
+            <ul class="link-list" id="links"></ul>
+          </article>
+          <article class="card">
+            <div class="card-head"><h3><svg class="ic" aria-hidden="true"><use href="/icons.svg#message"/></svg><span>Yoxlanılan mətn</span></h3></div>
+            <div id="marked" class="marked"></div>
+            <div class="legend-row"><span><i class="sw-red"></i>Təhlükəli ifadə</span><span><i class="sw-amber"></i>Naməlum və ya saxta link</span></div>
+          </article>
+        </div>
+        <div class="res-col">
+          <article class="card">
+            <div class="card-head"><h3><svg class="ic" aria-hidden="true"><use href="/icons.svg#shield-check"/></svg><span>Tövsiyə olunan addımlar</span></h3></div>
+            <p class="advice-lead" id="advice"></p>
+            <ul class="act-list" id="actions"></ul>
+          </article>
+          <article class="card" id="hotBox">
+            <div class="card-head"><h3><svg class="ic" aria-hidden="true"><use href="/icons.svg#phone"/></svg><span>Kimə müraciət etməli?</span></h3></div>
+            <div class="hotlines" id="hotlines"></div>
+          </article>
+          <details class="card tech" id="techBox">
+            <summary><span>Texniki detallar</span><svg class="ic chev" aria-hidden="true"><use href="/icons.svg#chevron-down"/></svg></summary>
+            <div class="tech-body">
+              <dl class="tech-dl" id="tech"></dl>
+              <p class="tech-note">Mühərrik: şəxsi məlumatların gizlədilməsi → link və domen yoxlaması (RDAP, Blacklist.gov.az, OpenPhish, VirusTotal, saytın təcrid olunmuş brauzerdə açılması) → fırıldaq ifadələri lüğəti və qaydalar → AZ-SC modeli → dil modeli (yalnız gizlədilmiş mətn, ±20 bal).</p>
+            </div>
+          </details>
+        </div>
+      </div>
+      <p class="res-privacy"><svg class="ic" aria-hidden="true"><use href="/icons.svg#lock"/></svg><span id="meta"></span></p>
+    </div>
+
+    <div id="phone" hidden>
+      <div class="card res-summary" id="phSum">
+        <div class="sum-icon"><svg class="ic" aria-hidden="true"><use href="/icons.svg#phone"/></svg></div>
+        <div class="sum-main">
+          <span class="badge" id="phBadge"><span class="dot"></span><span id="phLvl"></span></span>
+          <p class="ph-num" id="phNum"></p>
+          <p class="sum-title" id="phBand"></p>
+          <p class="ph-type" id="phType"></p>
+        </div>
+        <dl class="sum-facts">
+          <div><dt>Təhlil növü</dt><dd>Telefon nömrəsi</dd></div>
+          <div><dt>Nömrənin növü</dt><dd id="phKind"></dd></div>
+          <div><dt>İstifadəçi bildirişi</dt><dd id="phReports"></dd></div>
+          <div><dt>Təhlil vaxtı</dt><dd id="phTime"></dd></div>
+        </dl>
+      </div>
+      <div class="res-grid">
+        <div class="res-col">
+          <article class="card">
+            <div class="card-head"><h3><svg class="ic" aria-hidden="true"><use href="/icons.svg#shield-alert"/></svg><span>Bu nömrə barədə nə bilirik?</span></h3></div>
+            <ul class="ind-list" id="phReasons"></ul>
+          </article>
+          <article class="card" id="phReportBox" hidden>
+            <div class="card-head"><h3><svg class="ic" aria-hidden="true"><use href="/icons.svg#flag"/></svg><span>Bu nömrə sizə fırıldaq üçün zəng edib?</span></h3></div>
+            <p class="muted">Bildirişiniz anonim sayılır. Eyni nömrəni 3 və daha çox istifadəçi bildirəndə, nömrəni yoxlayanlara xəbərdarlıq göstərilir.</p>
+            <div class="lactions"><button class="btn btn-secondary" id="phReport" type="button"><svg class="ic ic-sm" aria-hidden="true"><use href="/icons.svg#flag"/></svg><span>Bu nömrəni bildir</span></button></div>
+            <p class="shotnote" id="phReportNote" role="status" hidden></p>
+          </article>
+        </div>
+        <div class="res-col">
+          <article class="card">
+            <div class="card-head"><h3><svg class="ic" aria-hidden="true"><use href="/icons.svg#shield-check"/></svg><span>Tövsiyə olunan addımlar</span></h3></div>
+            <p class="advice-lead" id="phAdvice"></p>
+          </article>
+          <article class="card">
+            <div class="card-head"><h3><svg class="ic" aria-hidden="true"><use href="/icons.svg#phone"/></svg><span>Kimə müraciət etməli?</span></h3></div>
+            <div class="hotlines" id="phHotlines"></div>
+          </article>
+        </div>
+      </div>
+      <p class="res-privacy"><svg class="ic" aria-hidden="true"><use href="/icons.svg#lock"/></svg><span>Nömrə yadda saxlanılmır. Bildirişlər yalnız şifrələnmiş (HMAC) şəkildə sayılır.</span></p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SAYT REPUTASİYASI ================= -->
+<section class="section" id="domen" aria-labelledby="domTitle">
+  <div class="container dom-grid">
+    <div>
+      <p class="eyebrow"><svg class="ic ic-sm" aria-hidden="true"><use href="/icons.svg#globe"/></svg><span>Sayt reputasiyası</span></p>
+      <h2 id="domTitle" class="sec-title">Sayta girməzdən əvvəl onun hesabatına baxın</h2>
+      <p class="muted sec-lead">Saytın ünvanını yazın. ScamShield domenin yaşını, rəsmi və qara siyahıları, VirusTotal nəticəsini və saytın içindəki formaları bir hesabatda göstərir.</p>
+      <form class="dom-form" id="domForm" novalidate>
+        <label class="label" for="domInput">Saytın ünvanı</label>
+        <div class="input-row">
+          <input class="input" id="domInput" type="text" inputmode="url" autocomplete="off" autocapitalize="off" spellcheck="false" maxlength="300" placeholder="məsələn: azerpost-catdirilma.top" aria-describedby="domErr">
+          <button class="btn btn-primary" type="submit" id="domBtn"><svg class="ic ic-sm" aria-hidden="true"><use href="/icons.svg#search"/></svg><span>Hesabat al</span></button>
+        </div>
+        <p class="field-error" id="domErr" role="alert" hidden></p>
+      </form>
+      <ul class="dom-points">
+        <li><svg class="ic" aria-hidden="true"><use href="/icons.svg#info"/></svg><span>Kilid işarəsi (HTTPS) saytın təhlükəsiz olduğunu göstərmir: fırıldaq saytlarının çoxu da HTTPS işlədir.</span></li>
+        <li><svg class="ic" aria-hidden="true"><use href="/icons.svg#info"/></svg><span>Sübut olmadan heç bir sayta «təhlükəli» demirik: nəticə yalnız tapılan əlamətlərə əsaslanır.</span></li>
+        <li><svg class="ic" aria-hidden="true"><use href="/icons.svg#info"/></svg><span>Saytı biz təcrid olunmuş brauzerdə açırıq, sizin cihazınız sayta qoşulmur.</span></li>
+      </ul>
+    </div>
+    <div>
+      <div class="card dom-empty" id="domEmpty"><svg class="ic" aria-hidden="true"><use href="/icons.svg#globe"/></svg><p>Hesabat burada görünəcək.</p></div>
+      <div class="skeleton" id="domSkeleton" hidden aria-hidden="true"><div class="sk sk-md"></div></div>
+      <article class="card" id="domReport" hidden aria-live="polite">
+        <div class="dom-head">
+          <div><span class="badge" id="domBadge"><span class="dot"></span><span id="domBadgeText"></span></span><p class="dom-name" id="domName"></p><p class="dom-sub" id="domSub"></p></div>
+          <div class="dom-score"><b id="domScore"></b><small> / 100</small><br><small>risk balı</small></div>
+        </div>
+        <ul class="dchk" id="domChecks"></ul>
+        <div class="dom-foot" id="domFoot"></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ================= STATİSTİKA ================= -->
+<section class="section alt" id="neticeler" aria-labelledby="statTitle">
+  <div class="container">
+    <div class="sec-head">
+      <p class="eyebrow"><svg class="ic ic-sm" aria-hidden="true"><use href="/icons.svg#chart"/></svg><span>Sınaq nəticələri</span></p>
+      <h2 id="statTitle">Rəqəmlər real sınaqdan gəlir</h2>
+      <p>Sistemi model öyrədilərkən görmədiyi real Azərbaycan SMS-ləri və onu aldatmaq üçün hazırlanmış hücum mesajları üzərində ölçdük.</p>
+    </div>
+    <div class="stats-grid">
+      <div class="card stat-card"><b><span data-count="85">85</span><span class="u">%</span></b><span class="s-label">fırıldaq SMS-i aşkarlandı</span><span class="s-sub">123 fırıldaq mesajından 105-i (85,4%)</span></div>
+      <div class="card stat-card"><b><span data-count="3">3</span><span class="u">%</span></b><span class="s-label">normal mesajlarda yanlış həyəcan</span><span class="s-sub">782 normal və reklam SMS-indən 24-ü (3,1%)</span></div>
+      <div class="card stat-card"><b><span data-count="905">905</span></b><span class="s-label">real SMS üzərində sınaq</span><span class="s-sub">Modelin öyrənmədə görmədiyi mesajlar</span></div>
+      <div class="card stat-card"><b><span data-count="17">17</span><span class="u">/17</span></b><span class="s-label">aldatma cəhdi tutuldu</span><span class="s-sub">Sistemi aldatmaq üçün yazılmış hücum mesajları</span></div>
+    </div>
+    <div class="method">
+      <div class="card">
+        <h3>905 SMS üzrə nəticələrin bölgüsü</h3>
+        <div class="bars">
+          <div>
+            <div class="bar-label"><b>Fırıldaq SMS-lər</b><span>123</span></div>
+            <div class="bar" role="img" aria-label="123 fırıldaq SMS-dən 105-i tutuldu, 18-i buraxıldı"><i class="b-scam w-8537"></i><i class="b-miss w-1463"></i></div>
+            <div class="bar-legend"><span><i class="b-scam"></i>Tutuldu: 105</span><span><i class="b-miss"></i>Buraxıldı: 18</span></div>
+          </div>
+          <div>
+            <div class="bar-label"><b>Normal və reklam SMS-lər</b><span>782</span></div>
+            <div class="bar" role="img" aria-label="782 normal SMS-dən 758-i düzgün tanındı, 24-ündə yanlış həyəcan oldu"><i class="b-good w-9693"></i><i class="b-fp w-307"></i></div>
+            <div class="bar-legend"><span><i class="b-good"></i>Düzgün tanındı: 758</span><span><i class="b-fp"></i>Yanlış həyəcan: 24</span></div>
+          </div>
+        </div>
+        <p class="tech-note">Hədd: bal 50 və yuxarı olanda mesaj «fırıldaq» sayılır. Dəqiqlik (precision): 81,4% — «fırıldaq» dediyimiz 129 mesajdan 105-i həqiqətən fırıldaq idi.</p>
+      </div>
+      <div class="card">
+        <h3>Necə ölçdük?</h3>
+        <ul>
+          <li><b>Dataset:</b> AZ-SC — Azərbaycan dilində real SMS-lərdən ibarət açıq dataset. Onun 20%-i öyrənmədən ayrıldı: 905 mesaj (123 fırıldaq, 782 normal və reklam).</li>
+          <li><b>Ölçülən sistem:</b> qaydalar və model birlikdə. Canlı link yoxlaması və dil modeli bu sınağa daxil deyil, yəni real istifadədə əlavə yoxlamalar da işləyir.</li>
+          <li><b>17/17:</b> sistemi aldatmaq üçün yazılmış 17 hücum mesajı (AZ, EN və RU dillərində təlimat inyeksiyası, Kiril hərfli domen, görünməz simvollar, qısaldılmış link, «@» hiyləsi, IP ünvanlı link və s.) — hamısı tutuldu. 3 nəzarət mesajı (real Azərpoçt, real bank kodu, reklam) səhvən fırıldaq sayılmadı.</li>
+        </ul>
+        <p class="disclaimer"><svg class="ic" aria-hidden="true"><use href="/icons.svg#alert"/></svg><span>Bu rəqəmlər sınaq nəticəsidir, hər mesaj üçün zəmanət deyil. Şübhə qalırsa, qurumun rəsmi nömrəsinə özünüz zəng edin.</span></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= AKTİV TƏHDİDLƏR ================= -->
+<section class="section" id="tehdidler" aria-labelledby="thTitle">
+  <div class="container">
+    <div class="sec-head">
+      <p class="eyebrow"><svg class="ic ic-sm" aria-hidden="true"><use href="/icons.svg#activity"/></svg><span>Təhdid lenti</span></p>
+      <h2 id="thTitle">Aktiv kibertəhdidlər</h2>
+      <p>Son 24 saatda ScamShield-də yüksək riskli çıxan fırıldaq kampaniyaları. Mesajların mətni göstərilmir: yalnız tələnin növü, sayı və sübutu olan saytlar.</p>
+    </div>
+    <div class="feed-bar">
+      <span class="live-dot">Son 24 saat</span>
+      <div class="feed-stats">
+        <span>Yoxlanılan mesaj: <b id="fdTotal">—</b></span>
+        <span>Yüksək riskli: <b id="fdHigh">—</b></span>
+        <span>Yenilənib: <b id="fdTime">—</b></span>
+      </div>
+    </div>
+    <div class="threat-grid" id="thList" aria-live="polite">
+      <div class="sk sk-md" aria-hidden="true"></div><div class="sk sk-md" aria-hidden="true"></div><div class="sk sk-md" aria-hidden="true"></div>
+    </div>
+    <div class="state-box" id="thEmpty" hidden>
+      <svg class="ic" aria-hidden="true"><use href="/icons.svg#inbox"/></svg>
+      <b>Son 24 saatda yüksək riskli kampaniya qeydə alınmayıb</b>
+      <p>Bu siyahı yalnız ScamShield-də aşkarlanan real hallardan yaranır, uydurma nümunə göstərmirik. Şübhəli mesaj alsanız, yuxarıda yoxlayın: kampaniya burada görünəcək.</p>
+    </div>
+    <div class="state-box" id="thError" hidden>
+      <svg class="ic" aria-hidden="true"><use href="/icons.svg#alert"/></svg>
+      <b>Təhdid lentini yükləmək alınmadı</b>
+      <p>Bağlantını yoxlayıb yenidən cəhd edin.</p>
+      <button class="btn btn-secondary btn-sm" id="thRetry" type="button"><svg class="ic ic-sm" aria-hidden="true"><use href="/icons.svg#refresh"/></svg><span>Yenidən cəhd et</span></button>
+    </div>
+    <div class="sources">
+      <div class="card source"><span class="s-ic"><svg class="ic" aria-hidden="true"><use href="/icons.svg#activity"/></svg></span><div><b>ScamShield yoxlamaları</b><span>Saytda və Telegram botunda edilən anonim yoxlamalar. Canlı yenilənir.</span></div></div>
+      <div class="card source"><span class="s-ic"><svg class="ic" aria-hidden="true"><use href="/icons.svg#bank"/></svg></span><div><b>Blacklist.gov.az</b><span>Dövlətin saxta saytlar siyahısı. Hər linki onunla müqayisə edirik.</span></div></div>
+      <div class="card source"><span class="s-ic"><svg class="ic" aria-hidden="true"><use href="/icons.svg#database"/></svg></span><div><b>OpenPhish</b><span>Beynəlxalq fişinq lenti. 6 saatda bir yenilənir.</span></div></div>
+    </div>
+    <p class="tech-note">Xarici kibertəhdid xəbər lenti (CERT, banklar) hələ qoşulmayıb. Bölmə belə lentləri qəbul etməyə hazırdır.</p>
+  </div>
+</section>
+
+<!-- ================= BİLDİRİŞ ================= -->
+<section class="section alt" id="bildir" aria-labelledby="repTitle">
+  <div class="container report-grid">
+    <div>
+      <p class="eyebrow"><svg class="ic ic-sm" aria-hidden="true"><use href="/icons.svg#flag"/></svg><span>İcma bildirişi</span></p>
+      <h2 id="repTitle" class="sec-title">Şübhəli mənbə haqqında məlumat ver</h2>
+      <p class="muted sec-lead">Fırıldaq nömrəsi, saxta sayt və ya mesajla qarşılaşmısınız? Bildirin: yoxlanılandan sonra başqalarını qorumağa kömək edəcək.</p>
+      <ol class="flow">
+        <li><span class="f-ic"><svg class="ic" aria-hidden="true"><use href="/icons.svg#send"/></svg></span><div><b>Siz göndərirsiniz</b><span>Ad, telefon və ya e-poçt soruşmuruq.</span></div></li>
+        <li><span class="f-ic"><svg class="ic" aria-hidden="true"><use href="/icons.svg#search"/></svg></span><div><b>Moderator yoxlayır</b><span>Bildiriş avtomatik dərc olunmur: əvvəlcə bank və CERT panelində yoxlanılır.</span></div></li>
+        <li><span class="f-ic"><svg class="ic" aria-hidden="true"><use href="/icons.svg#shield-check"/></svg></span><div><b>Təsdiqlənəndən sonra</b><span>Yalnız təsdiqlənən mənbə təhdid məlumatına çevrilir.</span></div></li>
+      </ol>
+    </div>
+    <form class="card rep-form" id="repForm" novalidate>
+      <fieldset class="rtype">
+        <legend class="label">Nəyi bildirirsiniz?</legend>
+        <div class="rtype-grid">
+          <label><input type="radio" name="rtype" value="phone" checked><svg class="ic" aria-hidden="true"><use href="/icons.svg#phone"/></svg><span>Telefon nömrəsi</span></label>
+          <label><input type="radio" name="rtype" value="website"><svg class="ic" aria-hidden="true"><use href="/icons.svg#globe"/></svg><span>Veb-sayt</span></label>
+          <label><input type="radio" name="rtype" value="message"><svg class="ic" aria-hidden="true"><use href="/icons.svg#message"/></svg><span>Fırıldaq mesajı</span></label>
+          <label><input type="radio" name="rtype" value="campaign"><svg class="ic" aria-hidden="true"><use href="/icons.svg#mail-alert"/></svg><span>Fişinq kampaniyası</span></label>
+        </div>
+      </fieldset>
+      <div class="field">
+        <label class="label" for="repValue" id="repValueLabel">Telefon nömrəsi</label>
+        <textarea class="textarea" id="repValue" rows="1" maxlength="1000" placeholder="+994 50 123 45 67" aria-describedby="repValueErr"></textarea>
+        <p class="field-error" id="repValueErr" hidden></p>
+      </div>
+      <div class="field">
+        <label class="label" for="repNote">Qısa izah <span class="opt">(istəyə bağlı)</span></label>
+        <textarea class="textarea" id="repNote" rows="3" maxlength="500" placeholder="Məsələn: bank adından zəng edib SMS kodu istədi."></textarea>
+      </div>
+      <div class="hp" aria-hidden="true"><label>Bu sahəni boş saxlayın <input type="text" id="repHp" name="company" tabindex="-1" autocomplete="off"></label></div>
+      <label class="check"><input type="checkbox" id="repConsent"><span>Bildirişdə öz şəxsi məlumatlarımı (adım, kart nömrəm, kodlar) yazmadığımı təsdiq edirəm.</span></label>
+      <p class="field-error" id="repErr" role="alert" hidden></p>
+      <button class="btn btn-primary btn-lg" type="submit" id="repBtn"><svg class="ic" aria-hidden="true"><use href="/icons.svg#send"/></svg><span>Bildirişi göndər</span></button>
+      <div class="form-ok" id="repOk" role="status" hidden><svg class="ic" aria-hidden="true"><use href="/icons.svg#check-circle"/></svg><span id="repOkText"></span></div>
+    </form>
+  </div>
+</section>
+
+<!-- ================= AKADEMİYA ================= -->
+<section class="section" id="akademiya" aria-labelledby="acadTitle">
+  <div class="container">
+    <div class="sec-head">
+      <p class="eyebrow"><svg class="ic ic-sm" aria-hidden="true"><use href="/icons.svg#book"/></svg><span>Rəqəmsal təhlükəsizlik dərsləri</span></p>
+      <h2 id="acadTitle">ScamShield Akademiyası</h2>
+      <p>Fırıldaqçıların ən çox işlətdiyi tələlər və onlardan qorunmaq üçün sadə qaydalar. Hər dərs 2–4 dəqiqəlikdir.</p>
+    </div>
+    <div class="acad-grid" id="acadGrid"></div>
+    <div class="card promo">
+      <div>
+        <h3>Özünüzü sınayın: təhlükəni aşkar et</h3>
+        <p>5 mesaj, 1 dəqiqə. Hər cavabdan sonra tələnin harada olduğunu göstəririk. Şirkətlər üçün öz cədvəli və «ayın ən ayıq işçisi».</p>
+      </div>
+      <a class="btn btn-primary" href="/oyun"><svg class="ic ic-sm" aria-hidden="true"><use href="/icons.svg#target"/></svg><span>Oyuna başla</span></a>
+    </div>
+  </div>
+  <dialog class="lesson-dlg" id="lessonDlg" aria-labelledby="dlgTitle"><div class="dlg-in" id="dlgBody"></div></dialog>
+</section>
+
+<!-- ================= TELEGRAM ================= -->
+<section class="section alt" id="telegram" aria-labelledby="tgTitle">
+  <div class="container tg-grid">
+    <div>
+      <p class="eyebrow"><svg class="ic ic-sm" aria-hidden="true"><use href="/icons.svg#send"/></svg><span>Telegram inteqrasiyası</span></p>
+      <h2 id="tgTitle" class="sec-title">Mesajı bota yönləndirin, cavab saniyələr içində gəlsin</h2>
+      <p class="muted sec-lead">ScamShield Telegram botu saytdakı eyni yoxlamanı edir. Şübhəli mesajı, linki, nömrəni və ya səsli mesajı bota göndərmək kifayətdir.</p>
+      <ul class="feat-list">
+        <li><span class="f-ic"><svg class="ic" aria-hidden="true"><use href="/icons.svg#message"/></svg></span><div><b>Mesaj və link</b><span>Yönləndirilmiş mesajı yoxlayır, linkdəki saytın şəklini göndərir.</span></div></li>
+        <li><span class="f-ic"><svg class="ic" aria-hidden="true"><use href="/icons.svg#mic"/></svg></span><div><b>Səsli mesaj</b><span>Səsi mətnə çevirib yoxlayır. Səs saxlanılmır.</span></div></li>
+        <li><span class="f-ic"><svg class="ic" aria-hidden="true"><use href="/icons.svg#phone"/></svg></span><div><b>Nömrə yoxlaması</b><span>Zəng edən nömrəni göndərin: ölkə kodu və istifadəçi bildirişləri.</span></div></li>
+        <li><span class="f-ic"><svg class="ic" aria-hidden="true"><use href="/icons.svg#activity"/></svg></span><div><b>/bugun</b><span>Bu gün yayılan tələlərin qısa siyahısı.</span></div></li>
+      </ul>
+      <div class="hero-cta"><a class="btn btn-primary tg-link" id="tgBtn" href="https://t.me/scamshield_az_bot" target="_blank" rel="noopener noreferrer"><svg class="ic ic-sm" aria-hidden="true"><use href="/icons.svg#send"/></svg><span>Botu aç</span></a></div>
+      <div class="card guard-note" id="guard">
+        <span class="g-ic"><svg class="ic" aria-hidden="true"><use href="/icons.svg#user-check"/></svg></span>
+        <div>
+          <b>Yaxınını qoru</b>
+          <p>Valideyniniz bota çox təhlükəli mesaj göndərəndə sizə dərhal xəbər gəlir ki, ona zəng edəsiniz. Onun mesajlarının mətni sizə göstərilmir və qoşulmaq üçün onun öz razılığı lazımdır.</p>
+          <div class="lactions"><a class="btn btn-secondary btn-sm" id="guardBtn" href="https://t.me/scamshield_az_bot?start=qoru" target="_blank" rel="noopener noreferrer"><svg class="ic ic-sm" aria-hidden="true"><use href="/icons.svg#user-check"/></svg><span>Telegram-da qur</span></a></div>
+        </div>
+      </div>
+    </div>
+    <div class="card tg-card">
+      <div class="qr-wrap"><img src="/tg-qr.svg" alt="Telegram botunun QR kodu" width="168" height="168"></div>
+      <p>Telefonun kamerası ilə skan edin və ya Telegram-da axtarın:<br><span class="handle" id="tgHandle">@scamshield_az_bot</span></p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= MƏXFİLİK ================= -->
+<section class="section" id="mexfilik" aria-labelledby="privTitle">
+  <div class="container">
+    <div class="sec-head">
+      <p class="eyebrow"><svg class="ic ic-sm" aria-hidden="true"><use href="/icons.svg#lock"/></svg><span>Məxfilik</span></p>
+      <h2 id="privTitle">Məxfiliyiniz bizim üçün vacibdir.</h2>
+      <p>Nəyi emal etdiyimizi, nəyi saxladığımızı və nəyi saxlamadığımızı açıq yazırıq.</p>
+    </div>
+    <div class="priv-grid">
+      <article class="card priv"><span class="p-ic"><svg class="ic" aria-hidden="true"><use href="/icons.svg#file"/></svg></span><h3>Nə emal olunur?</h3><p>Yoxlamaq üçün göndərdiyiniz mətn, link və ya nömrə. Kart nömrəsi, telefon nömrəsi və kodlar yoxlamadan əvvəl gizlədilir.</p></article>
+      <article class="card priv"><span class="p-ic"><svg class="ic" aria-hidden="true"><use href="/icons.svg#database"/></svg></span><h3>Mesajlar saxlanılırmı?</h3><p>Xeyr, mesajın mətni saxlanılmır. Kampaniyaları tanımaq üçün yalnız anonim qeyd qalır: vaxt, bal, tapılan əlamətlərin kodları, brend və şübhəli linkin domeni.</p></article>
+      <article class="card priv"><span class="p-ic"><svg class="ic" aria-hidden="true"><use href="/icons.svg#layers"/></svg></span><h3>Üçüncü tərəflər</h3><p>Sayt Cloudflare-də işləyir, dil modeli də orada işləyir və yalnız gizlədilmiş mətni görür. VirusTotal-a və domen reyestrinə yalnız linkin domeni göndərilir. Saytda reklam və izləmə kodu yoxdur.</p></article>
+      <article class="card priv"><span class="p-ic"><svg class="ic" aria-hidden="true"><use href="/icons.svg#cpu"/></svg></span><h3>Təhlil necə aparılır?</h3><p>Tam avtomatik: qaydalar, domen yoxlaması, öyrədilmiş model və dil modeli. Mesajınızı insan oxumur. Şübhəli saytı sizin cihazınız yox, bizim təcrid olunmuş brauzerimiz açır.</p></article>
+      <article class="card priv"><span class="p-ic"><svg class="ic" aria-hidden="true"><use href="/icons.svg#image"/></svg></span><h3>Şəkillər və QR kodlar</h3><p>Şəkil cihazınızdan çıxmır: QR kod və şəkildəki mətn brauzerinizdə oxunur. Serverə yalnız oxunan mətn yoxlama üçün göndərilir.</p></article>
+      <article class="card priv warn"><span class="p-ic"><svg class="ic" aria-hidden="true"><use href="/icons.svg#alert"/></svg></span><h3>Nəyi göndərməməli?</h3><p>Öz kart nömrənizi, CVV-ni, PIN-i, şifrəni, SMS kodunu və şəxsiyyət vəsiqəsinin məlumatlarını göndərməyin. Yoxlamaq üçün fırıldaq mesajının özü kifayətdir.</p></article>
+    </div>
+    <div class="priv-links">
+      <a class="btn btn-secondary btn-sm" href="/mexfilik">Məxfilik siyasəti</a>
+      <a class="btn btn-ghost btn-sm" href="/mexfilik#serter">İstifadə şərtləri</a>
+      <a class="btn btn-ghost btn-sm" href="/#faq">Tez-tez verilən suallar</a>
+      <a class="btn btn-ghost btn-sm" href="/mexfilik#elaqe">Əlaqə</a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= HAQQIMIZDA + FAQ ================= -->
+<section class="section alt" id="haqqimizda" aria-labelledby="aboutTitle">
+  <div class="container about-grid">
+    <div class="about-text">
+      <p class="eyebrow"><svg class="ic ic-sm" aria-hidden="true"><use href="/icons.svg#users"/></svg><span>Haqqımızda</span></p>
+      <h2 id="aboutTitle" class="sec-title">Azərbaycan üçün qurulmuş fırıldaq qalxanı</h2>
+      <p>ScamShield Azərbaycan dilində fırıldaq mesajlarını, saxta saytları və şübhəli nömrələri yoxlayan platformadır. Məqsədimiz sadədir: insan linkə klikləməzdən, kodu deməzdən və pul köçürməzdən əvvəl tələni görsün.</p>
+      <p>Hər yoxlama anonim siqnala çevrilir. Eyni kampaniya bir neçə dəfə görünəndə bank və CERT komandaları onu erkən xəbərdarlıq panelində görür. Dövlətin Blacklist.gov.az siyahısını əvəz etmirik, onu tamamlayırıq.</p>
+      <div class="about-facts">
+        <div><b>Cyber Force komandası</b><span>OYU CyberAI Hackathon 2026</span></div>
+        <div><b>Azərbaycan dilində</b><span>Yerli brendlər və yerli fırıldaq ssenariləri</span></div>
+        <div><b>Sayt və Telegram</b><span>Eyni yoxlama hər iki kanalda</span></div>
+        <div><b>Bank və CERT paneli</b><span>Kampaniyalar üzrə erkən xəbərdarlıq</span></div>
+      </div>
+    </div>
+    <div id="faq">
+      <h3 class="faq-title">Tez-tez verilən suallar</h3>
+      <div class="faq">
+        <details><summary><span>ScamShield-ə nə göndərmək olar?</span><svg class="ic" aria-hidden="true"><use href="/icons.svg#chevron-down"/></svg></summary><p>SMS və ya WhatsApp mesajının mətni, link, telefon nömrəsi, QR kod və ya mesajın ekran şəkli. Telegram botuna səsli mesaj da göndərmək olar.</p></details>
+        <details><summary><span>Nəticə həmişə doğrudurmu?</span><svg class="ic" aria-hidden="true"><use href="/icons.svg#chevron-down"/></svg></summary><p>Xeyr, heç bir sistem 100% dəqiq deyil. ScamShield risk əlamətlərini göstərir, zəmanət vermir. Sınaqda fırıldaq SMS-lərinin 85%-ni tutdu, normal mesajların 3%-də yanlış həyəcan verdi.</p></details>
+        <details><summary><span>Mesajım saxlanılır?</span><svg class="ic" aria-hidden="true"><use href="/icons.svg#chevron-down"/></svg></summary><p>Xeyr. Mesajın mətni saxlanılmır. Yalnız anonim statistika qalır: vaxt, bal, tapılan əlamətlərin kodları, brend və şübhəli linkin domeni.</p></details>
+        <details><summary><span>«Təhlükə əlaməti yoxdur» nə deməkdir?</span><svg class="ic" aria-hidden="true"><use href="/icons.svg#chevron-down"/></svg></summary><p>Bu, mesajın mütləq təhlükəsiz olduğu demək deyil: sadəcə yoxlamalarımız ciddi əlamət tapmayıb. SMS kodunu və kart məlumatını heç vaxt heç kimə deməyin.</p></details>
+        <details><summary><span>Pulum artıq kartdan çıxıb. Nə etməliyəm?</span><svg class="ic" aria-hidden="true"><use href="/icons.svg#chevron-down"/></svg></summary><p>Kartı dərhal bank tətbiqində bloklayın, kartın arxasındakı nömrəyə zəng edin və 102 nömrəsi ilə polisə müraciət edin. Saxta sayt və ya oğurlanmış hesab barədə 1654 xəttinə də xəbər verə bilərsiniz.</p></details>
+        <details><summary><span>Xidmət ödənişlidir?</span><svg class="ic" aria-hidden="true"><use href="/icons.svg#chevron-down"/></svg></summary><p>Xeyr. Sayt və Telegram botu pulsuzdur və qeydiyyat tələb etmir.</p></details>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a class="brand" href="/" aria-label="ScamShield — ana səhifə"><svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><path d="M16 3.5 6.5 7v7.4c0 6 3.9 11.2 9.5 13.1 5.6-1.9 9.5-7.1 9.5-13.1V7z" fill="#DC2626"/><path d="M16 3.5V27.5c5.6-1.9 9.5-7.1 9.5-13.1V7z" fill="#B91C1C"/><path d="m11.4 15.6 3.2 3.2 6-6.2" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg><span>ScamShield</span></a>
+        <p>ScamShield — Rəqəmsal təhlükələrə qarşı ağıllı müdafiə platforması.</p>
+      </div>
+      <div class="foot-col">
+        <h4>Platforma</h4>
+        <ul>
+          <li><a href="/#yoxla">Təhlükə təhlili</a></li>
+          <li><a href="/#domen">Sayt reputasiyası</a></li>
+          <li><a href="/#tehdidler">Aktiv təhdidlər</a></li>
+          <li><a href="/#bildir">Bildiriş göndər</a></li>
+          <li><a href="/panel">Bank və CERT paneli</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h4>Öyrən</h4>
+        <ul>
+          <li><a href="/#akademiya">ScamShield Akademiyası</a></li>
+          <li><a href="/oyun">Özünüzü sınayın (oyun)</a></li>
+          <li><a href="/#neticeler">Sınaq nəticələri</a></li>
+          <li><a href="/#faq">Tez-tez verilən suallar</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h4>Əlaqə</h4>
+        <ul>
+          <li><a class="tg-link" href="https://t.me/scamshield_az_bot" target="_blank" rel="noopener noreferrer">Telegram botu</a></li>
+          <li><a href="/mexfilik">Məxfilik siyasəti</a></li>
+          <li><a href="/mexfilik#serter">İstifadə şərtləri</a></li>
+          <li><a href="/mexfilik#elaqe">Əlaqə</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 ScamShield · Cyber Force · OYU CyberAI Hackathon 2026</span>
+      <span>Təcili hallarda: Polis 102 · Kibertəhlükəsizlik xətti 1654</span>
+    </div>
+  </div>
+</footer>
+
+<div class="toast" id="toast" role="status" aria-live="polite"><svg class="ic" aria-hidden="true"><use href="/icons.svg#check-circle"/></svg><span id="toastText"></span></div>
+
+<script type="module" src="/nav.js"></script>
+<script type="module" src="/app.js"></script>
+<script type="module" src="/motion.js"></script>
+</body>
+</html>

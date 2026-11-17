@@ -1,0 +1,14 @@
+{
+  "name": "ayiq",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "data": "node tools/build-data.mjs",
+    "test": "node tools/test.mjs",
+    "dev": "npx wrangler@4 dev",
+    "deploy": "npx wrangler@4 deploy"
+  },
+  "dependencies": {
+    "@cloudflare/puppeteer": "^1.4.0"
+  }
+}

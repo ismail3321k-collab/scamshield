@@ -1,0 +1,29 @@
+name = "ayiq"
+main = "src/worker.js"
+compatibility_date = "2026-10-01"
+compatibility_flags = ["nodejs_compat"]
+
+[assets]
+directory = "./public"
+binding = "ASSETS"
+
+[ai]
+binding = "AI"
+
+[browser]
+binding = "BROWSER"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "ayiq"
+database_id = "89867e73-f145-45c0-a613-53f9f3b524fe"
+
+[triggers]
+crons = ["17 */6 * * *"]
+
+[vars]
+LLM_MODEL = "@cf/meta/llama-3.3-70b-instruct-fp8-fast"
+SITE_URL = "https://scamshield-az.pages.dev"
+
+[observability]
+enabled = true

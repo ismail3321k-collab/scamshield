@@ -1,0 +1,174 @@
+{
+  "note": "Təhlükəni aşkar et oyunu. Uydurma domenlər 17.11.2026-da RDAP ilə yoxlanılıb: qeydiyyatda deyil. Kart nömrələri gizlədilib.",
+  "items": [
+    {
+      "id": "poct-odenis",
+      "channel": "SMS",
+      "from": "AZ-POST",
+      "fromFlag": false,
+      "text": "Bağlamanız ünvan natamam olduğu üçün anbarda saxlanılır. 24 saat ərzində 0,99 AZN ödəyib ünvanınızı yeniləyin: azerpost-catdirilma.top/az",
+      "scam": true,
+      "flags": ["24 saat ərzində", "0,99 AZN ödəyib", "azerpost-catdirilma.top/az"],
+      "good": [],
+      "why": [
+        "Link Azərpoçtun saytına aparmır: onların saytı azerpost.az-dır, bu isə başqa ünvandır.",
+        "Kiçik məbləğ (0,99 AZN) yemdir: əsl məqsəd kart məlumatlarınızı oğurlamaqdır.",
+        "«24 saat» sizi tələsdirmək üçündür ki, düşünməyəsiniz."
+      ],
+      "lesson": "Linkdə domenin sonuna baxın: Azərpoçtun saytı yalnız azerpost.az-dır."
+    },
+    {
+      "id": "bank-whatsapp",
+      "channel": "WhatsApp",
+      "from": "+995 55 000 47 21",
+      "fromFlag": true,
+      "text": "Salam, Kapital Bank-ın təhlükəsizlik şöbəsindənəm. Kartınızdan 340 AZN şübhəli ödəniş cəhdi var. Ləğv etmək üçün indi telefonunuza gələn SMS kodunu mənə yazın.",
+      "scam": true,
+      "flags": ["təhlükəsizlik şöbəsindənəm", "SMS kodunu mənə yazın"],
+      "good": [],
+      "why": [
+        "Bank heç vaxt SMS kodunu soruşmur: bu kodla pulunuzu köçürürlər.",
+        "Nömrə +995 ilə başlayır: bu, Gürcüstanın kodudur, Azərbaycanınkı isə +994-dür. İKTA-ya görə fırıldaq zənglərinin çoxu belə nömrələrdən gəlir.",
+        "Şübhə varsa, kartın arxasındakı nömrəyə özünüz zəng edin."
+      ],
+      "lesson": "SMS kodunu heç kimə deməyin, bank əməkdaşına da."
+    },
+    {
+      "id": "is-tapsiriq",
+      "channel": "Telegram",
+      "from": "HR Aysel",
+      "fromFlag": false,
+      "text": "Salam! Evdən işləmək istəyirsiniz? Gündə 1-2 saat, 80-200 AZN qazanc. Sadəcə məhsullara «bəyən» basırsınız. Başlamaq üçün 25 AZN qeydiyyat haqqı ödəmək lazımdır.",
+      "scam": true,
+      "flags": ["80-200 AZN qazanc", "25 AZN qeydiyyat haqqı"],
+      "good": [],
+      "why": [
+        "Həqiqi iş yerində işə başlamaq üçün sizdən pul istəmirlər.",
+        "Az işə çox pul vəd edirlər. Bu, «tapşırıq» fırıldağıdır: əvvəl kiçik qazanc göstərirlər, sonra böyük depozit istəyirlər."
+      ],
+      "lesson": "İş üçün əvvəlcə sizdən pul istəyirlərsə, bu, fırıldaqdır."
+    },
+    {
+      "id": "yaxin-yeni-nomre",
+      "channel": "WhatsApp",
+      "from": "Naməlum nömrə",
+      "fromFlag": true,
+      "text": "Ana, salam, bu mənim yeni nömrəmdir, telefonum xarab oldu. Təcili 300 manat lazımdır, bu karta at: 4169 **** **** 2731. Axşam qaytaracam. Zəng etmə, indi danışa bilmirəm.",
+      "scam": true,
+      "flags": ["yeni nömrəmdir", "Təcili 300 manat", "bu karta at", "Zəng etmə"],
+      "good": [],
+      "why": [
+        "Yaxınınızın adından «yeni nömrə» ilə yazıb pul istəmək çox yayılmış tələdir.",
+        "«Zəng etmə» deyir ki, səsini eşidib yoxlamayasınız.",
+        "Pul göndərməzdən əvvəl yaxınınıza köhnə nömrəsindən zəng edin."
+      ],
+      "lesson": "Yaxınınız yeni nömrədən pul istəyirsə, əvvəl köhnə nömrəsinə zəng edin."
+    },
+    {
+      "id": "mygov-yardim",
+      "channel": "SMS",
+      "from": "myGov-info",
+      "fromFlag": false,
+      "text": "myGov: Sizə 250 AZN birdəfəlik sosial yardım təyin edilib. Pulu almaq üçün kart məlumatlarınızı daxil edin: mygov-yardim.info",
+      "scam": true,
+      "flags": ["250 AZN birdəfəlik sosial yardım", "kart məlumatlarınızı daxil edin", "mygov-yardim.info"],
+      "good": [],
+      "why": [
+        "Dövlət saytlarının ünvanı .gov.az ilə bitir. mygov-yardim.info dövlət saytı deyil.",
+        "Dövlət yardım üçün SMS ilə kart məlumatı istəmir."
+      ],
+      "lesson": "Dövlət saytının ünvanı həmişə .gov.az ilə bitir."
+    },
+    {
+      "id": "bakcell-hediyye",
+      "channel": "SMS",
+      "from": "BKC-Bonus",
+      "fromFlag": false,
+      "text": "Təbriklər! Nömrəniz Bakcell-in illik lotereyasında iPhone 17 qazandı. Hədiyyəni almaq üçün çatdırılma haqqı 4,99 AZN ödəyin: bkc-hediyye.xyz",
+      "scam": true,
+      "flags": ["iPhone 17 qazandı", "çatdırılma haqqı 4,99 AZN", "bkc-hediyye.xyz"],
+      "good": [],
+      "why": [
+        "Qatılmadığınız lotereyada udmaq olmur.",
+        "Bakcell-in qısa linki bkc.link-dir. bkc-hediyye.xyz başqa saytdır, sadəcə adı oxşadılıb."
+      ],
+      "lesson": "Oxşar ad eyni sayt demək deyil: domenin hər hərfinə baxın."
+    },
+    {
+      "id": "alt-domen",
+      "channel": "SMS",
+      "from": "KapitalBank",
+      "fromFlag": false,
+      "text": "Kapital Bank: Kartınız müvəqqəti bloklanıb. Bloku açmaq üçün daxil olun: kapitalbank.az.kart-yenile.com",
+      "scam": true,
+      "flags": ["müvəqqəti bloklanıb", "kapitalbank.az.kart-yenile.com"],
+      "good": [],
+      "why": [
+        "Linkin əsl ünvanı sondakı hissədir: kart-yenile.com. «kapitalbank.az» sadəcə əvvələ yazılıb ki, sizi aldatsın.",
+        "Bank kartınızı bloklayanda sizi linkə yox, 196 nömrəsinə və ya filiala yönləndirir."
+      ],
+      "lesson": "Domeni sağdan sola oxuyun: sonuncu hissə əsl saytdır."
+    },
+    {
+      "id": "otp",
+      "channel": "SMS",
+      "from": "Kapital Bank",
+      "fromFlag": false,
+      "text": "Birbank-a giriş kodu: 4821. Kodu heç kimə deməyin, bank əməkdaşına da.",
+      "scam": false,
+      "flags": [],
+      "good": ["Kodu heç kimə deməyin, bank əməkdaşına da."],
+      "why": [
+        "Bu, özünüz Birbank-a girəndə gələn adi koddur: link yoxdur, heç nə istəmir.",
+        "Əksinə, «kodu heç kimə deməyin» deyə xəbərdarlıq edir.",
+        "Amma siz giriş etmədən belə kod gəlibsə, kimsə hesabınıza girməyə çalışır: kodu heç kimə verməyin."
+      ],
+      "lesson": "Kod mesajı özü təhlükəli deyil; təhlükəli olan kodu kiməsə deməkdir."
+    },
+    {
+      "id": "odenis-bildirisi",
+      "channel": "SMS",
+      "from": "Kapital Bank",
+      "fromFlag": false,
+      "text": "Kart *2731: 12.40 AZN ödəniş, SUPERMARKET, 16.11 18:42. Balans: 245.10 AZN.",
+      "scam": false,
+      "flags": [],
+      "good": [],
+      "why": [
+        "Adi ödəniş bildirişidir: link yoxdur, heç nə istəmir.",
+        "Bu ödənişi siz etməmisinizsə, kartın arxasındakı nömrəyə özünüz zəng edin."
+      ],
+      "lesson": "Link yoxdursa və heç nə istəmirsə, çox vaxt adi bildirişdir."
+    },
+    {
+      "id": "poct-pulsuz",
+      "channel": "SMS",
+      "from": "AZERPOST",
+      "fromFlag": false,
+      "text": "Hörmətli müştəri, RR482913570AZ nömrəli bağlamanız Nərimanov poçt şöbəsinə çatıb. Şəxsiyyət vəsiqəniz ilə yaxınlaşa bilərsiniz.",
+      "scam": false,
+      "flags": [],
+      "good": ["Şəxsiyyət vəsiqəniz ilə yaxınlaşa bilərsiniz."],
+      "why": [
+        "Pul, kart məlumatı və ya link istəmir: sadəcə bağlamanın harada olduğunu deyir.",
+        "Şübhə varsa, Azərpoçtun 169 nömrəsinə zəng edib bağlama nömrəsini yoxlaya bilərsiniz."
+      ],
+      "lesson": "Ödəniş və link istəməyən bildiriş adətən təhlükəsizdir."
+    },
+    {
+      "id": "birbank-keshbek",
+      "channel": "SMS",
+      "from": "Birbank",
+      "fromFlag": false,
+      "text": "Birbank kartı ilə kommunal ödənişlərdə 5% keşbek qazanın. Ətraflı: birbank.az",
+      "scam": false,
+      "flags": [],
+      "good": ["birbank.az"],
+      "why": [
+        "Link rəsmi sayta aparır: birbank.az.",
+        "Kart məlumatı, kod və ya pul istəmir."
+      ],
+      "lesson": "Rəsmi domen və heç nə istəməmək yaxşı əlamətdir. Yenə də linkə basmaq əvəzinə bankın tətbiqini özünüz açın."
+    }
+  ]
+}

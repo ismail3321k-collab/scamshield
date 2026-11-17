@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="az">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Təhlükəni aşkar et — ScamShield təlim oyunu</title>
+<meta name="description" content="10 mesaj: hansı fırıldaqdır, hansı təhlükəsiz? Hər cavabdan sonra tələnin harada olduğunu göstəririk. Xal qazanın, şirkətinizin cədvəlinə düşün.">
+<meta name="theme-color" content="#0A0A0A">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Əsas məzmuna keç</a>
+<header class="site-header">
+  <div class="container hdr">
+    <a class="brand" href="/" aria-label="ScamShield — ana səhifə">
+      <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><path d="M16 3.5 6.5 7v7.4c0 6 3.9 11.2 9.5 13.1 5.6-1.9 9.5-7.1 9.5-13.1V7z" fill="#DC2626"/><path d="M16 3.5V27.5c5.6-1.9 9.5-7.1 9.5-13.1V7z" fill="#B91C1C"/><path d="m11.4 15.6 3.2 3.2 6-6.2" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span>ScamShield</span>
+    </a>
+    <nav class="nav" id="mainNav" aria-label="Əsas menyu">
+      <a href="/#top">Ana səhifə</a>
+      <a href="/#yoxla">Təhlil</a>
+      <a href="/#tehdidler">Aktiv təhdidlər</a>
+      <a href="/#akademiya">Akademiya</a>
+      <a href="/oyun" aria-current="page">Özünüzü sınayın</a>
+      <a href="/kampaniya">Fişinq Testi</a>
+      <a href="/#haqqimizda">Haqqımızda</a>
+      <div class="nav-mobile-extra">
+        <a class="btn btn-secondary" href="https://t.me/scamshield_az_bot" target="_blank" rel="noopener noreferrer"><svg class="ic ic-sm" aria-hidden="true"><use href="/icons.svg#send"/></svg><span>Telegram botu</span></a>
+        <a class="btn btn-primary" href="/#yoxla">Mesajı yoxla</a>
+      </div>
+    </nav>
+    <div class="hdr-actions">
+      <a class="btn btn-ghost btn-icon hdr-tg" href="https://t.me/scamshield_az_bot" target="_blank" rel="noopener noreferrer" aria-label="Telegram botu" title="Telegram botu"><svg class="ic" aria-hidden="true"><use href="/icons.svg#send"/></svg></a>
+      <a class="btn btn-primary btn-sm hdr-cta" href="/#yoxla">Mesajı yoxla</a>
+      <button class="btn btn-ghost btn-icon nav-toggle" id="navToggle" type="button" aria-expanded="false" aria-controls="mainNav" aria-label="Menyunu aç"><svg class="ic" aria-hidden="true"><use href="/icons.svg#menu"/></svg></button>
+    </div>
+  </div>
+</header>
+
+<main id="main" class="page">
+  <div class="container">
+    <div class="page-head">
+      <p class="eyebrow"><svg class="ic ic-sm" aria-hidden="true"><use href="/icons.svg#target"/></svg><span>ScamShield Akademiyası · təlim oyunu</span></p>
+      <h1>Təhlükəni aşkar et</h1>
+      <p>Mesajın təhlükəli, yoxsa təhlükəsiz olduğunu müəyyən edin. Fırıldaqçıların ən çox işlətdiyi tələləri oyun formasında öyrənin.</p>
+    </div>
+
+    <div class="game-wrap">
+      <div>
+        <section class="game g-start" id="gStart">
+          <h2>Hazırsınız?</h2>
+          <p>10 nümunə mesaj göstərəcəyik. Hər biri üçün «Təhlükəlidir» və ya «Təhlükəsizdir» seçin; cavabdan sonra tələnin harada olduğunu göstəririk.</p>
+          <ul class="g-rules">
+            <li>Hər düzgün cavab: 10 xal</li>
+            <li>Ardıcıl 3 düzgün cavabdan sonra: hər cavaba +5 bonus</li>
+            <li>Sonda ləqəblə ayın cədvəlinə düşə bilərsiniz</li>
+          </ul>
+          <button class="btn btn-primary btn-lg" id="gStartBtn" type="button">Sınağa başla</button>
+        </section>
+
+        <section class="game" id="game" aria-live="polite" hidden>
+          <div class="g-top">
+            <span id="gStep">1 / 5</span>
+            <span class="g-points" id="gPoints">0 xal</span>
+            <ol class="g-dots" id="gDots" aria-hidden="true"></ol>
+          </div>
+          <div class="g-msg">
+            <div class="g-from"><span class="g-ch" id="gCh">SMS</span> · <span id="gFrom"></span></div>
+            <p class="g-bubble" id="gText">Yüklənir…</p>
+          </div>
+          <div class="g-actions" id="gActions">
+            <button class="btn g-scam" id="gScam" type="button" disabled>Təhlükəlidir</button>
+            <button class="btn g-safe" id="gSafe" type="button" disabled>Təhlükəsizdir</button>
+          </div>
+          <p class="error" id="gError" role="alert" hidden></p>
+          <div class="g-feedback" id="gFeedback" hidden>
+            <p class="g-verdict" id="gVerdict"></p>
+            <p class="g-gain" id="gGain"></p>
+            <p class="g-truth" id="gTruth"></p>
+            <ul class="reasons" id="gWhy"></ul>
+            <p class="g-lesson" id="gLesson"></p>
+            <button class="btn btn-primary" id="gNext" type="button">Növbəti</button>
+          </div>
+        </section>
+
+        <section class="game g-result" id="gResult" hidden aria-live="polite">
+          <div class="g-badge" id="gBadge" hidden></div>
+          <div class="g-score"><span id="gScore">0</span><small> xal</small></div>
+          <p class="g-msgline" id="gResultText"></p>
+          <form class="g-form" id="gForm" novalidate>
+            <h2>Cədvələ düşün</h2>
+            <div class="g-fields">
+              <label>Ləqəb <input id="gNick" maxlength="20" autocomplete="nickname" placeholder="məs. Diqqətli Pişik" required></label>
+              <label>Şirkət kodu <span class="opt">(istəyə bağlı)</span> <input id="gCompany" maxlength="16" autocomplete="off" placeholder="məs. OYU"></label>
+            </div>
+            <p class="g-note">Həqiqi adınızı yazmayın. Yalnız ləqəb, şirkət kodu və xal saxlanılır.</p>
+            <button class="btn btn-primary" id="gSave" type="submit">Cədvələ yaz</button>
+            <p class="g-formmsg" id="gFormMsg" role="status" hidden></p>
+          </form>
+          <h2>Ən vacib 3 qayda</h2>
+          <ol class="reasons">
+            <li>SMS kodunu heç kimə deməyin, bank əməkdaşına da.</li>
+            <li>Linkdə domenin sonuna baxın: azerpost.az, kapitalbank.az; dövlət saytları .gov.az ilə bitir.</li>
+            <li>Yaxınınız yeni nömrədən pul istəyirsə, əvvəl köhnə nömrəsinə zəng edin.</li>
+          </ol>
+          <div class="actions">
+            <button class="btn btn-primary" id="gAgain" type="button">Yenidən oyna</button>
+            <button class="btn btn-ghost" id="gShare" type="button">Dostuna göndər</button>
+            <a class="btn btn-ghost" href="/#yoxla">Şübhəli mesajı yoxla</a>
+          </div>
+          <p class="meta" id="gShareNote" hidden></p>
+        </section>
+      </div>
+
+      <section class="game board" id="cedvel" aria-live="polite">
+        <div class="b-head">
+          <h2 id="bTitle">Bu ayın cədvəli</h2>
+          <form class="b-filter" id="bFilter">
+            <input id="bCompany" maxlength="16" placeholder="Şirkət kodu" aria-label="Şirkət kodu">
+            <button class="btn btn-sm btn-ghost" type="submit">Göstər</button>
+          </form>
+        </div>
+        <div class="b-top" id="bTop" hidden></div>
+        <ol class="b-list" id="bList"></ol>
+        <p class="b-empty" id="bEmpty" hidden>Bu ay hələ heç kim cədvələ düşməyib. Birinci siz olun!</p>
+        <p class="meta" id="bMeta"></p>
+      </section>
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="foot-bottom solo">
+      <span>© 2026 ScamShield · Cyber Force · OYU CyberAI Hackathon 2026</span>
+      <span><a href="/">Ana səhifə</a> · <a href="/#akademiya">Akademiya</a> · <a href="/mexfilik">Məxfilik</a></span>
+    </div>
+  </div>
+</footer>
+<script type="module" src="/nav.js"></script>
+<script type="module" src="/oyun.js"></script>
+<script type="module" src="/motion.js"></script>
+</body>
+</html>

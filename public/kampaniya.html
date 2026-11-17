@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="az">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fişinq Testi — ScamShield komanda simulyasiyası</title>
+<meta name="description" content="Nəzarətli fişinq məşqi: komandanıza test mesajı göndərin (simulyasiya), kim kliklədiyini görün və onları ScamShield Akademiyasına yönləndirin. Demo — həqiqi e-poçt göndərilmir.">
+<meta name="theme-color" content="#0A0A0A">
+<meta name="robots" content="noindex">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/style.css">
+<style>
+/* ---- Komanda Məşqi (yalnız bu səhifə) ---- */
+.mq-note { display: flex; gap: 10px; align-items: flex-start; background: rgba(245, 158, 11, 0.08); border: 1px solid rgba(245, 158, 11, 0.35); color: #FCD9A0; border-radius: var(--r); padding: 12px 14px; font-size: 14px; margin-top: 16px; }
+.mq-note .ic { color: var(--warning); margin-top: 1px; }
+.mq-grid { display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 20px; align-items: start; margin-top: 28px; }
+@media (max-width: 920px) { .mq-grid { grid-template-columns: 1fr; } }
+.mq-step { color: var(--cyan); font-size: 0.78rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
+.mq-step .n { width: 22px; height: 22px; border-radius: 50%; background: rgba(220,38,38,0.15); border: 1px solid rgba(220,38,38,0.5); color: #FCA5A5; display: grid; place-items: center; font-size: 12px; }
+.mq-card + .mq-card { margin-top: 18px; }
+.rcpt-head { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-bottom: 12px; flex-wrap: wrap; }
+.rcpt-head .count { color: var(--muted); font-size: 13px; }
+.rcpt-list { display: grid; gap: 8px; max-height: 300px; overflow: auto; padding-right: 4px; }
+.rcpt { display: flex; align-items: center; gap: 12px; padding: 10px 12px; border: 1px solid var(--line); border-radius: var(--r); background: var(--card-2); cursor: pointer; }
+.rcpt:hover { border-color: var(--line-2); }
+.rcpt input { width: 18px; height: 18px; accent-color: var(--blue); flex: none; }
+.rcpt .av { width: 34px; height: 34px; border-radius: 50%; background: #26262b; color: #D4D4D8; display: grid; place-items: center; font-weight: 700; font-size: 14px; flex: none; }
+.rcpt .who { min-width: 0; }
+.rcpt .who b { display: block; font-size: 14.5px; font-weight: 600; }
+.rcpt .who span { display: block; color: var(--muted); font-size: 12.5px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.tmpl-list { display: grid; gap: 10px; }
+.tmpl { display: flex; gap: 12px; align-items: flex-start; padding: 12px; border: 1px solid var(--line); border-radius: var(--r); background: var(--card-2); cursor: pointer; }
+.tmpl.on { border-color: rgba(220,38,38,0.55); background: rgba(220,38,38,0.06); }
+.tmpl input { margin-top: 3px; accent-color: var(--blue); }
+.tmpl b { font-size: 14.5px; }
+.tmpl span { display: block; color: var(--muted); font-size: 13px; margin-top: 2px; }
+.mail-prev { margin-top: 14px; border: 1px solid var(--line); border-radius: var(--r); overflow: hidden; background: var(--input); }
+.mail-prev .mh { padding: 10px 14px; border-bottom: 1px solid var(--line); font-size: 13px; color: var(--muted); }
+.mail-prev .mh b { color: var(--text); font-weight: 600; }
+.mail-prev .mb { padding: 14px; font-size: 14px; line-height: 1.55; white-space: pre-wrap; }
+.mail-prev .mlink { display: inline-block; margin-top: 6px; color: #FCA5A5; word-break: break-all; }
+.mail-prev .safe { display: block; margin-top: 10px; color: var(--success); font-size: 12.5px; }
+.send-row { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; margin-top: 4px; }
+.bar { height: 8px; border-radius: 99px; background: #222; overflow: hidden; flex: 1; min-width: 160px; }
+.bar > i { display: block; height: 100%; width: 0; background: var(--blue); transition: width 0.3s ease; }
+.kpis { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 16px; }
+.kpis .stat { padding: 14px 16px; }
+.kpis .stat b { font-size: 28px; }
+.st { display: inline-flex; align-items: center; gap: 6px; font-size: 12.5px; font-weight: 600; padding: 3px 9px; border-radius: 99px; border: 1px solid; }
+.st-wait { color: var(--muted); border-color: var(--line-2); }
+.st-sent { color: #93C5FD; border-color: rgba(59,130,246,0.4); background: rgba(59,130,246,0.1); }
+.st-open { color: #FCD34D; border-color: rgba(245,158,11,0.4); background: rgba(245,158,11,0.1); }
+.st-click { color: #FCA5A5; border-color: rgba(220,38,38,0.45); background: rgba(220,38,38,0.12); }
+.res-table td .who2 b { font-weight: 600; }
+.res-table td .who2 span { color: var(--muted); font-size: 12px; }
+.tg { border: 1px solid var(--line); border-radius: var(--r-lg); background: var(--card-2); overflow: hidden; position: sticky; top: calc(var(--header-h) + 14px); }
+.tg-top { display: flex; align-items: center; gap: 10px; padding: 12px 14px; border-bottom: 1px solid var(--line); background: var(--card); }
+.tg-top .av { width: 34px; height: 34px; border-radius: 50%; background: rgba(34,197,94,0.18); border: 1px solid rgba(34,197,94,0.5); display: grid; place-items: center; flex: none; }
+.tg-top .av svg { width: 18px; height: 18px; color: var(--success); }
+.tg-top b { font-size: 14px; display: inline-flex; align-items: center; gap: 7px; }
+.tg-top span { display: block; color: var(--muted); font-size: 12px; }
+.lv-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--success); animation: pulse 2s ease-in-out infinite; }
+.tg-feed { padding: 14px; display: grid; gap: 10px; min-height: 220px; max-height: 420px; overflow: auto; background: #0b1016; }
+.tg-empty { color: var(--dim); font-size: 13px; text-align: center; margin: auto; }
+.bub { background: #182533; border: 1px solid rgba(255,255,255,0.06); border-radius: 12px 12px 12px 4px; padding: 9px 12px; font-size: 13.5px; line-height: 1.45; max-width: 92%; animation: bubIn 0.3s ease both; }
+.bub.click { border-left: 3px solid var(--danger); }
+.bub.open { opacity: 0.82; }
+.bub .nm { font-weight: 700; }
+.bub .t { display: block; color: var(--dim); font-size: 11px; margin-top: 4px; }
+@keyframes bubIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) { .bub { animation: none; } .bar > i { transition: none; } }
+.mq-cta { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; margin-top: 16px; }
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Əsas məzmuna keç</a>
+<header class="site-header">
+  <div class="container hdr">
+    <a class="brand" href="/" aria-label="ScamShield — ana səhifə">
+      <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><path d="M16 3.5 6.5 7v7.4c0 6 3.9 11.2 9.5 13.1 5.6-1.9 9.5-7.1 9.5-13.1V7z" fill="#DC2626"/><path d="M16 3.5V27.5c5.6-1.9 9.5-7.1 9.5-13.1V7z" fill="#B91C1C"/><path d="m11.4 15.6 3.2 3.2 6-6.2" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span>ScamShield</span>
+    </a>
+    <nav class="nav" id="mainNav" aria-label="Əsas menyu">
+      <a href="/#top">Ana səhifə</a>
+      <a href="/#yoxla">Təhlil</a>
+      <a href="/#tehdidler">Aktiv təhdidlər</a>
+      <a href="/#akademiya">Akademiya</a>
+      <a href="/oyun">Özünüzü sınayın</a>
+      <a href="/kampaniya" aria-current="page">Fişinq Testi</a>
+      <a href="/#haqqimizda">Haqqımızda</a>
+      <div class="nav-mobile-extra">
+        <a class="btn btn-secondary" href="https://t.me/scamshield_az_bot" target="_blank" rel="noopener noreferrer"><svg class="ic ic-sm" aria-hidden="true"><use href="/icons.svg#send"/></svg><span>Telegram botu</span></a>
+        <a class="btn btn-primary" href="/#yoxla">Mesajı yoxla</a>
+      </div>
+    </nav>
+    <div class="hdr-actions">
+      <a class="btn btn-ghost btn-icon hdr-tg" href="https://t.me/scamshield_az_bot" target="_blank" rel="noopener noreferrer" aria-label="Telegram botu" title="Telegram botu"><svg class="ic" aria-hidden="true"><use href="/icons.svg#send"/></svg></a>
+      <a class="btn btn-primary btn-sm hdr-cta" href="/#yoxla">Mesajı yoxla</a>
+      <button class="btn btn-ghost btn-icon nav-toggle" id="navToggle" type="button" aria-expanded="false" aria-controls="mainNav" aria-label="Menyunu aç"><svg class="ic" aria-hidden="true"><use href="/icons.svg#menu"/></svg></button>
+    </div>
+  </div>
+</header>
+
+<main id="main" class="page">
+  <div class="container">
+    <div class="page-head">
+      <p class="eyebrow"><svg class="ic ic-sm" aria-hidden="true"><use href="/icons.svg#users"/></svg><span>ScamShield Biznes · Fişinq Testi</span></p>
+      <h1>Fişinq simulyasiyası</h1>
+      <p>Rəhbər öz komandasına nəzarətli test mesajı göndərir, kimin linkə kliklədiyini görür və həssas işçiləri ScamShield Akademiyasına yönləndirir. Nəticələr rəhbərin panelində canlı görünür — Telegram qurmağa ehtiyac yoxdur; istəsəniz bildirişi Telegram və ya e-poçta da əlavə edə bilərsiniz.</p>
+      <div class="mq-note">
+        <svg class="ic ic-sm" aria-hidden="true"><use href="/icons.svg#info"/></svg>
+        <span><b>Demo rejimi.</b> Həqiqi e-poçt göndərilmir, həqiqi şəxs izlənmir. Siyahı və nəticələr nümunədir. Həqiqi məşqdə yalnız öz işçilərinizə, icazə ilə göndərilir; linklər təlim səhifəsinə aparır — heç bir saxta bank saytı açılmır.</span>
+      </div>
+    </div>
+
+    <div class="mq-grid">
+      <div>
+        <!-- Addım 1 -->
+        <section class="card mq-card" aria-labelledby="s1">
+          <p class="mq-step"><span class="n">1</span> Alıcılar</p>
+          <div class="rcpt-head">
+            <h2 id="s1" style="font-size:1.1rem">Komanda siyahısı <span class="count" id="rcCount">0 seçildi</span></h2>
+            <button class="btn btn-ghost btn-sm" id="rcAll" type="button">Hamısını seç</button>
+          </div>
+          <div class="rcpt-list" id="rcList"></div>
+        </section>
+
+        <!-- Addım 2 -->
+        <section class="card mq-card" aria-labelledby="s2">
+          <p class="mq-step"><span class="n">2</span> Məşq şablonu</p>
+          <h2 id="s2" style="font-size:1.1rem;margin-bottom:12px">Hansı tələni sınayaq?</h2>
+          <div class="tmpl-list" id="tmplList"></div>
+          <div class="mail-prev" id="mailPrev" aria-live="polite">
+            <div class="mh">Kimdən: <b>ScamShield Məşq</b> · Mövzu: <b id="mSubj"></b></div>
+            <div class="mb" id="mBody"></div>
+          </div>
+        </section>
+
+        <!-- Addım 3 -->
+        <section class="card mq-card" aria-labelledby="s3">
+          <p class="mq-step"><span class="n">3</span> Başlat</p>
+          <h2 id="s3" style="font-size:1.1rem;margin-bottom:12px">Simulyasiyanı işə sal</h2>
+          <div class="send-row">
+            <button class="btn btn-primary btn-lg" id="startBtn" type="button"><svg class="ic ic-sm" aria-hidden="true"><use href="/icons.svg#send"/></svg><span>Simulyasiyanı başlat</span></button>
+            <div class="bar" aria-hidden="true"><i id="sendBar"></i></div>
+          </div>
+          <p class="meta" id="sendMsg" role="status" hidden></p>
+        </section>
+
+        <!-- Nəticələr -->
+        <section class="card mq-card" id="resCard" aria-labelledby="s4" hidden>
+          <p class="mq-step"><svg class="ic ic-sm" aria-hidden="true"><use href="/icons.svg#chart"/></svg> Nəticələr</p>
+          <h2 id="s4" style="font-size:1.1rem;margin-bottom:14px">Kim nəyə kliklədi?</h2>
+          <div class="kpis">
+            <div class="stat"><b id="kSent">0</b><span>Göndərildi</span></div>
+            <div class="stat"><b id="kOpen">0</b><span>Açdı</span></div>
+            <div class="stat red"><b id="kClick">0</b><span>Kliklədi · həssas</span></div>
+          </div>
+          <div class="table-wrap">
+            <table class="res-table">
+              <thead><tr><th>Alıcı</th><th>Status</th><th>Vaxt</th><th>Tövsiyə</th></tr></thead>
+              <tbody id="resBody"></tbody>
+            </table>
+          </div>
+          <div class="mq-cta">
+            <button class="btn btn-primary" id="enrollBtn" type="button"><svg class="ic ic-sm" aria-hidden="true"><use href="/icons.svg#book"/></svg><span>Kliklədi olanları Akademiyaya yönləndir</span></button>
+            <button class="btn btn-ghost" id="resetBtn" type="button">Yeni məşq</button>
+          </div>
+          <p class="meta" id="enrollMsg" role="status" hidden></p>
+        </section>
+      </div>
+
+      <!-- Rəhbərin paneli — canlı nəticə -->
+      <aside class="tg" aria-label="Rəhbərin paneli — canlı nəticə">
+        <div class="tg-top">
+          <span class="av"><svg aria-hidden="true"><use href="/icons.svg#activity"/></svg></span>
+          <div><b>Rəhbərin paneli <span class="lv-dot" aria-hidden="true"></span></b><span id="tgSub">Canlı nəticə</span></div>
+        </div>
+        <div class="tg-feed" id="tgFeed">
+          <p class="tg-empty" id="tgEmpty">Rəhbər yalnız panelə daxil olur. Simulyasiya başlayanda hər klik burada canlı görünür — Telegram qurmaq lazım deyil.</p>
+        </div>
+      </aside>
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="foot-bottom solo">
+      <span>© 2026 ScamShield · Cyber Force · OYU CyberAI Hackathon 2026</span>
+      <span><a href="/">Ana səhifə</a> · <a href="/#akademiya">Akademiya</a> · <a href="/mexfilik">Məxfilik</a></span>
+    </div>
+  </div>
+</footer>
+<script type="module" src="/nav.js"></script>
+<script type="module" src="/kampaniya.js"></script>
+<script type="module" src="/motion.js"></script>
+</body>
+</html>

@@ -1,0 +1,854 @@
+[
+ {
+  "text": "Azərpoçt: Bağlamanız gömrükdə saxlanılıb. 2.50 AZN gömrük rüsumunu ödəyin: https://azerpost-odenis.top/pay",
+  "expected": "scam",
+  "type": "kargo",
+  "lang": "az"
+ },
+ {
+  "text": "Azerpoct: paketiniz anbara geldi, unvani yenileyin ve 1.80 AZN catdirilma haqqi odeyin. azerpost-catdirilma.xyz/az",
+  "expected": "scam",
+  "type": "kargo",
+  "lang": "az"
+ },
+ {
+  "text": "Hörmətli müştəri, 3 nömrəli bağlamanız çatdırıla bilmir. Ünvanı təsdiqləyin: http://poct-unvan.example/yenile",
+  "expected": "scam",
+  "type": "kargo",
+  "lang": "az"
+ },
+ {
+  "text": "Bağlamanız sizi gözləyir! Rüsum 1.50 manat. Ödəniş üçün link: bit.ly/azp-4421",
+  "expected": "scam",
+  "type": "kargo",
+  "lang": "az"
+ },
+ {
+  "text": "AZERPOST: Sizin adiniza beynelxalq baglama gelib. Gomruk haqqini 24 saat erzinde odeyin, eks halda geri qaytarilacaq. https://azerpost-gomruk.test/odenis",
+  "expected": "scam",
+  "type": "kargo",
+  "lang": "az"
+ },
+ {
+  "text": "Poçt: bağlama saxlanılıb, çatdırılma ünvanını yeniləyin https://pochta-az.top/x",
+  "expected": "scam",
+  "type": "kargo",
+  "lang": "az"
+ },
+ {
+  "text": "Sifarişiniz anbarda gözləyir. Çatdırılma üçün 0.99 AZN ödəniş edin: https://kargo-azerbaycan.example/pay",
+  "expected": "scam",
+  "type": "kargo",
+  "lang": "az"
+ },
+ {
+  "text": "DHL Azərbaycan: bağlamanız gömrükdə, kart məlumatlarınızı daxil edərək 2 AZN ödəyin: dhl-az-odenis.top",
+  "expected": "scam",
+  "type": "kargo",
+  "lang": "az"
+ },
+ {
+  "text": "Kapital Bank: kartınız bloklanıb. Təcili təsdiqləyin: https://kapitalbank-secure.top/login",
+  "expected": "scam",
+  "type": "bank",
+  "lang": "az"
+ },
+ {
+  "text": "Salam, mən Kapital Bank təhlükəsizlik şöbəsindən zəng edirəm. Hesabınızdan şübhəli əməliyyat var, SMS-ə gələn kodu mənə deyin.",
+  "expected": "scam",
+  "type": "bank",
+  "lang": "az"
+ },
+ {
+  "text": "ABB: hesabınızda şübhəli əməliyyat aşkarlandı. Hesabınızı qorumaq üçün CVV kodu və kart nömrənizi göndərin.",
+  "expected": "scam",
+  "type": "bank",
+  "lang": "az"
+ },
+ {
+  "text": "PAŞA Bank: kartınızın müddəti bitir. Məlumatlarınızı yeniləyin: https://pasha-bank-yenile.example/kart",
+  "expected": "scam",
+  "type": "bank",
+  "lang": "az"
+ },
+ {
+  "text": "Leobank: Hesabınız 24 saat ərzində bağlanacaq. Şəxsiyyət təsdiqi üçün daxil olun leobank-verify.top",
+  "expected": "scam",
+  "type": "bank",
+  "lang": "az"
+ },
+ {
+  "text": "Birbank: Girişdə şübhəli fəaliyyət. Kartın son 4 rəqəmini və SMS kodunu cavab yazın.",
+  "expected": "scam",
+  "type": "bank",
+  "lang": "az"
+ },
+ {
+  "text": "Kartiniz bloklandi. Tesdiqlemek ucun kart nomresi ve CVV gonderin. Kapital Bank tehlukesizlik.",
+  "expected": "scam",
+  "type": "bank",
+  "lang": "az"
+ },
+ {
+  "text": "Salam, Bank təhlükəsizlik xidmətindənəm. Kartınızdan 850 AZN köçürmə cəhdi olub, ləğv etmək üçün SMS kodu deyin.",
+  "expected": "scam",
+  "type": "bank",
+  "lang": "az"
+ },
+ {
+  "text": "Unibank: hesabınıza giriş məhdudlaşdırıldı. Şifrənizi və kartın PIN kodunu göndərin.",
+  "expected": "scam",
+  "type": "bank",
+  "lang": "az"
+ },
+ {
+  "text": "ABB mobile: tesdiq kodu lazimdir, kodu burda yazin ki hesabiniz blok olunmasin.",
+  "expected": "scam",
+  "type": "bank",
+  "lang": "az"
+ },
+ {
+  "text": "Kartınızda təsdiqlənməmiş ödəniş var. 10 dəqiqə ərzində linkə daxil olub kartı təsdiqləyin: https://abb-bank-kart.top/v",
+  "expected": "scam",
+  "type": "bank",
+  "lang": "az"
+ },
+ {
+  "text": "Salam, səhvən sizin nömrəyə WhatsApp kodu gəlib. Zəhmət olmasa kodu mənə göndərin, çox vacibdir.",
+  "expected": "scam",
+  "type": "otp",
+  "lang": "az"
+ },
+ {
+  "text": "Sabah qonaq gəlirəm. Bir şey xahiş edim: telefonuna 6 rəqəmli kod gələcək, mənə yaz.",
+  "expected": "scam",
+  "type": "otp",
+  "lang": "az"
+ },
+ {
+  "text": "Salam, Tap.az-da elanınıza baxdım. Telefonuza gələn doğrulama kodunu deyin, alıcı kimi təsdiq edim.",
+  "expected": "scam",
+  "type": "otp",
+  "lang": "az"
+ },
+ {
+  "text": "Telegram hesabınız silinəcək! Bunun qarşısını almaq üçün SMS kodunu göndərin.",
+  "expected": "scam",
+  "type": "otp",
+  "lang": "az"
+ },
+ {
+  "text": "Salam qardaş, WhatsApp-a girə bilmirəm, nömrəni səhv yazmışam, sənə kod gələcək, mənə at.",
+  "expected": "scam",
+  "type": "otp",
+  "lang": "az"
+ },
+ {
+  "text": "Azercell: Təbriklər! Siz 5000 AZN uduşun qalibi oldunuz. Hədiyyənizi almaq üçün link: azercell-hediyye.top/qazan",
+  "expected": "scam",
+  "type": "odul",
+  "lang": "az"
+ },
+ {
+  "text": "Bakcell 20 illik yubiley: nömrəniz seçildi! iPhone 15 qazandınız, qəbul edin: https://bakcell-lotereya.example",
+  "expected": "scam",
+  "type": "odul",
+  "lang": "az"
+ },
+ {
+  "text": "Nar: bonus 100 GB internet hədiyyə! Kart məlumatını daxil edin və hədiyyəni alın: nar-bonus.xyz",
+  "expected": "scam",
+  "type": "odul",
+  "lang": "az"
+ },
+ {
+  "text": "Təbrik edirik! Bu gün 3000 manat pul mükafatı qazandınız. Ödəniş üçün kart nömrəsini yazın.",
+  "expected": "scam",
+  "type": "odul",
+  "lang": "az"
+ },
+ {
+  "text": "Tebrikler! Siz lotereyada 10000 AZN qazandiniz. Pulu almaq ucun komissiya 50 AZN odeyin.",
+  "expected": "scam",
+  "type": "odul",
+  "lang": "az"
+ },
+ {
+  "text": "Azərbaycan Respublikası Lotereya: şanslı nömrə sizsiniz! Hədiyyə almaq üçün: https://lotereya-az.top/claim",
+  "expected": "scam",
+  "type": "odul",
+  "lang": "az"
+ },
+ {
+  "text": "Evdən işləyin! Gündə 150 AZN qazanc. Telegram-da yazın: t.me/isteklifiaz2024",
+  "expected": "scam",
+  "type": "is",
+  "lang": "az"
+ },
+ {
+  "text": "Salam, part-time iş təklifi: videolara like basıb gündə 80-200 AZN qazan. WhatsApp: wa.me/994500000000",
+  "expected": "scam",
+  "type": "is",
+  "lang": "az"
+ },
+ {
+  "text": "Sizin CV-niz bəyənildi. Gündə 2 saat işləyin, həftədə 1500 AZN. Ətraflı Telegramda: @iskomekci_az",
+  "expected": "scam",
+  "type": "is",
+  "lang": "az"
+ },
+ {
+  "text": "Online tapşırıqlar: məhsullara rəy yaz, hər tapşırığa 5 AZN. Əvvəlcə 50 AZN depozit edin, geri qaytarılacaq.",
+  "expected": "scam",
+  "type": "is",
+  "lang": "az"
+ },
+ {
+  "text": "Ev xanimlari ucun is: telefonla evden 100 manat gunluk, Telegram qrupuna qosulun https://t.me/gunluk_qazanc_az",
+  "expected": "scam",
+  "type": "is",
+  "lang": "az"
+ },
+ {
+  "text": "Tapşırıqları yerinə yetir, pul qazan! Qeydiyyat pulsuzdur, qazancı kriptoya çıxarırıq. WhatsApp +994 55 000 00 00",
+  "expected": "scam",
+  "type": "is",
+  "lang": "az"
+ },
+ {
+  "text": "SOCAR səhmləri ilk dəfə satışda! Cəmi 100 AZN yatırın, 30 gündə 3 qat qazanın: socar-sehm.top",
+  "expected": "scam",
+  "type": "invest",
+  "lang": "az"
+ },
+ {
+  "text": "Kripto investisiya: 500 AZN qoyun, hər gün 7% gəlir zəmanəti. Mütəxəssislərimiz sizin əvəzinizə ticarət edir. t.me/kriptoaz_pro",
+  "expected": "scam",
+  "type": "invest",
+  "lang": "az"
+ },
+ {
+  "text": "Neft şirkətinin səhmləri satılır, risksiz 40% gəlir. Depozit qoyun: https://neft-invest.example/start",
+  "expected": "scam",
+  "type": "invest",
+  "lang": "az"
+ },
+ {
+  "text": "Bitcoin ile gunde 200 manat qazanin! 250 AZN yatirin, 2 saata ikiqat geri. Telegram: @btc_az_money",
+  "expected": "scam",
+  "type": "invest",
+  "lang": "az"
+ },
+ {
+  "text": "Dövlət səhmləri paylanır, hər vətəndaşa investisiya imkanı. Qeydiyyat üçün şəxsiyyət vəsiqəsi şəkli və kart məlumatı göndərin.",
+  "expected": "scam",
+  "type": "invest",
+  "lang": "az"
+ },
+ {
+  "text": "myGov: sosial yardım hüququ qazandınız. 350 AZN almaq üçün kart məlumatlarını daxil edin: mygov-yardim.top",
+  "expected": "scam",
+  "type": "gov",
+  "lang": "az"
+ },
+ {
+  "text": "ASAN xidmət: şəxsi hesabınız dayandırılıb. Bərpa üçün daxil olun: https://asan-berpa.example/login",
+  "expected": "scam",
+  "type": "gov",
+  "lang": "az"
+ },
+ {
+  "text": "Sosial Müdafiə Fondu: Sizə birdəfəlik 500 AZN yardım təyin edilib. Pulu almaq üçün kart nömrəsi və SMS kodunu göndərin.",
+  "expected": "scam",
+  "type": "gov",
+  "lang": "az"
+ },
+ {
+  "text": "Dövlət yardımı: hər ailəyə 400 manat. Müraciət üçün linkə keçin: dovlet-yardimi.xyz",
+  "expected": "scam",
+  "type": "gov",
+  "lang": "az"
+ },
+ {
+  "text": "DİN: haqqınızda cərimə var. 20 AZN ödəniş edin, əks halda 24 saat sonra məhkəməyə veriləcək: din-cerime.top",
+  "expected": "scam",
+  "type": "gov",
+  "lang": "az"
+ },
+ {
+  "text": "Vergi Xidməti: borcunuz var. Təcili ödəyin, yoxsa hesabınız bloklanacaq. https://e-vergi-borc.top/odenis",
+  "expected": "scam",
+  "type": "gov",
+  "lang": "az"
+ },
+ {
+  "text": "Yol polisi: avtomobiliniz üçün 45 AZN cərimə. Ödəmək üçün keçid: https://yol-cerime.test/pay",
+  "expected": "scam",
+  "type": "gov",
+  "lang": "az"
+ },
+ {
+  "text": "Salam, Tap.az-da elanınız hələ də aktualdır? Pulu kartınıza köçürmək üçün linkdən məlumatları doldurun: tapaz-odenis.top/kart",
+  "expected": "scam",
+  "type": "market",
+  "lang": "az"
+ },
+ {
+  "text": "Salam, maşın elanınızı gördüm, almaq istəyirəm. Təhlükəsiz ödəniş üçün bu linkə daxil olun: https://lalafo-payment.example/secure",
+  "expected": "scam",
+  "type": "market",
+  "lang": "az"
+ },
+ {
+  "text": "Lalafo: alıcı ödəniş etdi. Pulu almaq üçün kart nömrəsi və CVV daxil edin: lalafo-pul.top",
+  "expected": "scam",
+  "type": "market",
+  "lang": "az"
+ },
+ {
+  "text": "Salam, telefon hələ satılır? Kuryer göndərirəm, pulu bu linkdən alın: https://birmarket-odenis.xyz/p",
+  "expected": "scam",
+  "type": "market",
+  "lang": "az"
+ },
+ {
+  "text": "Tap.az catdirilma: alici pulu kecirib, kartinizi tesdiqleyin ve kodu yazin: tap-az-pay.top",
+  "expected": "scam",
+  "type": "market",
+  "lang": "az"
+ },
+ {
+  "text": "Ana, telefonum xarab olub, bu nömrə yenidir. Təcili 300 AZN lazımdır, bu nömrəyə pul at, sonra izah edəcəm.",
+  "expected": "scam",
+  "type": "relative",
+  "lang": "az"
+ },
+ {
+  "text": "Salam ata, mən yeni nömrədən yazıram, telefon suya düşdü. Bir dostuma 500 manat göndərməlisən, kartına link atıram.",
+  "expected": "scam",
+  "type": "relative",
+  "lang": "az"
+ },
+ {
+  "text": "Ana mən qəza etmişəm, polis saxlayıb. Çox təcili 1000 manat lazımdı, kimsəyə deməyin, bu kartaya köçür.",
+  "expected": "scam",
+  "type": "relative",
+  "lang": "az"
+ },
+ {
+  "text": "Salam dayı, mənəm, nömrəm dəyişib. Təcili borc lazımdır, 400 AZN at, axşam qaytararam.",
+  "expected": "scam",
+  "type": "relative",
+  "lang": "az"
+ },
+ {
+  "text": "Anaaa telefonum xarab olub bu nomreye yaz. Tecili pul lazimdi 200 manat kart nomresine at.",
+  "expected": "scam",
+  "type": "relative",
+  "lang": "az"
+ },
+ {
+  "text": "Xəstə körpənin həyatı sizin əlinizdədir! Əməliyyat üçün yardım edin: kart 4169 0000 0000 0000. Paylaşın!",
+  "expected": "scam",
+  "type": "charity",
+  "lang": "az"
+ },
+ {
+  "text": "Şəhid ailələrinə kömək kampaniyası. Təcili ianə göndərin, kart nömrəsi: 5522 0000 0000 0000, link: iane-az.top",
+  "expected": "scam",
+  "type": "charity",
+  "lang": "az"
+ },
+ {
+  "text": "Uşaq xəstəxanası üçün ianə toplayırıq. Təcili köçürün, yoxsa uşaq ölə bilər: https://ianeet.example/pay",
+  "expected": "scam",
+  "type": "charity",
+  "lang": "az"
+ },
+ {
+  "text": "Mobil nömrənizin balansı 0. Azercell: təcili şəxsi məlumatlarınızı yeniləyin, əks halda nömrə bağlanacaq: azercell-yenile.top",
+  "expected": "scam",
+  "type": "misc",
+  "lang": "az"
+ },
+ {
+  "text": "Salam, mən kuryerəm. Sifarişinizi çatdırmaq üçün ünvan və kartın üzərindəki rəqəmləri göndərin.",
+  "expected": "scam",
+  "type": "misc",
+  "lang": "az"
+ },
+ {
+  "text": "Sizin e-poçt hesabınız hack olunub! Təcili şifrənizi bu linkdə dəyişin: https://mail-berpa.top",
+  "expected": "scam",
+  "type": "misc",
+  "lang": "az"
+ },
+ {
+  "text": "Elektrik borcu: Azərişıq: borcunuz var, 2 saata ödəməsəniz cərimə. Ödəmək üçün: azerishiq-odenis.top",
+  "expected": "scam",
+  "type": "misc",
+  "lang": "az"
+ },
+ {
+  "text": "Ваша карта Kapital Bank заблокирована. Срочно сообщите код из СМС сотруднику службы безопасности.",
+  "expected": "scam",
+  "type": "bank",
+  "lang": "ru"
+ },
+ {
+  "text": "Служба безопасности банка: подозрительная операция на 850 AZN. Назовите CVV и номер карты для отмены.",
+  "expected": "scam",
+  "type": "bank",
+  "lang": "ru"
+ },
+ {
+  "text": "Azerpost: ваша посылка задержана на таможне. Оплатите 2.50 AZN: https://azerpost-pay.top/ru",
+  "expected": "scam",
+  "type": "kargo",
+  "lang": "ru"
+ },
+ {
+  "text": "Поздравляем! Вы выиграли 5000 манат в лотерее Azercell. Для получения введите данные карты: azercell-prize.xyz",
+  "expected": "scam",
+  "type": "odul",
+  "lang": "ru"
+ },
+ {
+  "text": "Работа на дому! Заработок 150 манат в день без опыта. Пишите в Telegram: t.me/rabota_az",
+  "expected": "scam",
+  "type": "is",
+  "lang": "ru"
+ },
+ {
+  "text": "Инвестиции в крипту: вложи 200 манат и получи 600 за неделю. Гарантия дохода. WhatsApp +994 50 000 00 00",
+  "expected": "scam",
+  "type": "invest",
+  "lang": "ru"
+ },
+ {
+  "text": "Мама, у меня сломался телефон, это новый номер. Срочно переведи 300 манат на эту карту.",
+  "expected": "scam",
+  "type": "relative",
+  "lang": "ru"
+ },
+ {
+  "text": "ASAN: вам положена социальная выплата 400 манат. Введите данные карты по ссылке: asan-vyplata.top",
+  "expected": "scam",
+  "type": "gov",
+  "lang": "ru"
+ },
+ {
+  "text": "Здравствуйте, мне случайно пришёл ваш код WhatsApp. Перешлите, пожалуйста, код из СМС.",
+  "expected": "scam",
+  "type": "otp",
+  "lang": "ru"
+ },
+ {
+  "text": "Здравствуйте, я хочу купить ваш товар на Tap.az. Оплата безопасная по ссылке, введите данные карты: tapaz-pay.top",
+  "expected": "scam",
+  "type": "market",
+  "lang": "ru"
+ },
+ {
+  "text": "Azerpost: your parcel is held at customs. Pay 2.00 AZN fee within 24 hours: https://azerpost-fee.top/pay",
+  "expected": "scam",
+  "type": "kargo",
+  "lang": "en"
+ },
+ {
+  "text": "Kapital Bank security alert: your card has been blocked. Reply with the SMS code to unblock it.",
+  "expected": "scam",
+  "type": "bank",
+  "lang": "en"
+ },
+ {
+  "text": "Congratulations! You won 5000 AZN in the Azercell lottery. Claim your prize now: azercell-win.xyz/claim",
+  "expected": "scam",
+  "type": "odul",
+  "lang": "en"
+ },
+ {
+  "text": "Work from home, earn $150 per day with simple tasks. Contact us on Telegram: t.me/easyjobaz",
+  "expected": "scam",
+  "type": "is",
+  "lang": "en"
+ },
+ {
+  "text": "Crypto investment: deposit 200 AZN and get 600 AZN in 7 days. Guaranteed returns. WhatsApp +994 55 111 22 33",
+  "expected": "scam",
+  "type": "invest",
+  "lang": "en"
+ },
+ {
+  "text": "Mom, my phone broke, this is my new number. Please urgently send 300 AZN to this card.",
+  "expected": "scam",
+  "type": "relative",
+  "lang": "en"
+ },
+ {
+  "text": "Hi, I sent my WhatsApp code to your number by mistake, please send me the 6 digit code you received.",
+  "expected": "scam",
+  "type": "otp",
+  "lang": "en"
+ },
+ {
+  "text": "myGov: you are eligible for a 400 AZN social benefit. Enter your card details here: mygov-benefit.top",
+  "expected": "scam",
+  "type": "gov",
+  "lang": "en"
+ },
+ {
+  "text": "Hi, I want to buy your item on Tap.az. Please open this payment link and enter your card number and CVV: tapaz-secure.top",
+  "expected": "scam",
+  "type": "market",
+  "lang": "en"
+ },
+ {
+  "text": "Dear customer, your account will be closed in 24 hours. Verify your identity at https://pasha-verify.example/login",
+  "expected": "scam",
+  "type": "bank",
+  "lang": "en"
+ },
+ {
+  "text": "Təsdiq kodu: 123456. Kodu heç kimə deməyin.",
+  "expected": "legit",
+  "type": "otp",
+  "lang": "az"
+ },
+ {
+  "text": "Kapital Bank: Birbank-a giriş kodu: 482913. Kodu heç kimə deməyin.",
+  "expected": "legit",
+  "type": "otp",
+  "lang": "az"
+ },
+ {
+  "text": "ABB: 3D Secure kodu 774412. Bu kodu heç kimə verməyin. Əməliyyat: 25.00 AZN, Wolt.",
+  "expected": "legit",
+  "type": "otp",
+  "lang": "az"
+ },
+ {
+  "text": "PAŞA Bank: Birdəfəlik şifrə 905231. Heç kimlə bölüşməyin, bank işçiləri bu kodu soruşmur.",
+  "expected": "legit",
+  "type": "otp",
+  "lang": "az"
+ },
+ {
+  "text": "Leobank: Giriş üçün təsdiq kodunuz 118830. Kodu kimsəyə verməyin.",
+  "expected": "legit",
+  "type": "otp",
+  "lang": "az"
+ },
+ {
+  "text": "Your verification code is 552901. Do not share this code with anyone.",
+  "expected": "legit",
+  "type": "otp",
+  "lang": "az"
+ },
+ {
+  "text": "Tap.az: təsdiq kodunuz 4821. Kodu heç kimə deməyin.",
+  "expected": "legit",
+  "type": "otp",
+  "lang": "az"
+ },
+ {
+  "text": "Код подтверждения: 384920. Никому не сообщайте этот код.",
+  "expected": "legit",
+  "type": "otp",
+  "lang": "ru"
+ },
+ {
+  "text": "Kartınızdan 12.50 AZN çıxılıb. Yer: Bravo Supermarket. Qalıq: 87.30 AZN.",
+  "expected": "legit",
+  "type": "tx",
+  "lang": "az"
+ },
+ {
+  "text": "Kapital Bank: Kartınıza 250.00 AZN mədaxil olundu. Qalıq: 612.40 AZN.",
+  "expected": "legit",
+  "type": "tx",
+  "lang": "az"
+ },
+ {
+  "text": "ABB: 4169***1234 kartından 45.90 AZN ödəniş edildi (Bolt). Qalıq 130.10 AZN.",
+  "expected": "legit",
+  "type": "tx",
+  "lang": "az"
+ },
+ {
+  "text": "Birbank: Hesabınızdan 100 AZN köçürmə həyata keçirildi. Əməliyyat nömrəsi 88231.",
+  "expected": "legit",
+  "type": "tx",
+  "lang": "az"
+ },
+ {
+  "text": "Kartinizdan 7.20 AZN cixilib. Yer: Umico. Qaliq: 54.80 AZN.",
+  "expected": "legit",
+  "type": "tx",
+  "lang": "az"
+ },
+ {
+  "text": "PAŞA Bank: Maaş hesabınıza daxil olub: 1250.00 AZN.",
+  "expected": "legit",
+  "type": "tx",
+  "lang": "az"
+ },
+ {
+  "text": "Leobank: kredit ödənişi 85.00 AZN uğurla həyata keçirildi.",
+  "expected": "legit",
+  "type": "tx",
+  "lang": "az"
+ },
+ {
+  "text": "Azərpoçt: 1234567 nömrəli bağlamanız Nərimanov poçt şöbəsinə çatdı. Ətraflı: https://azerpost.az",
+  "expected": "legit",
+  "type": "post",
+  "lang": "az"
+ },
+ {
+  "text": "Azərpoçt: Bağlamanız çatdırılma üçün kuryerə təhvil verilib. İzləmə: https://azerpost.az/track",
+  "expected": "legit",
+  "type": "post",
+  "lang": "az"
+ },
+ {
+  "text": "Azerpost: baglamaniz Yasamal poct shobesine catdi. Iş saatları 09:00-18:00. azerpost.az",
+  "expected": "legit",
+  "type": "post",
+  "lang": "az"
+ },
+ {
+  "text": "Azercell: Balansınız 4.30 AZN-dir. Yeni tarif haqqında: https://azercell.com",
+  "expected": "legit",
+  "type": "operator",
+  "lang": "az"
+ },
+ {
+  "text": "Bakcell: Hesabınıza 2 GB bonus internet əlavə edildi. Ətraflı: https://www.bakcell.com",
+  "expected": "legit",
+  "type": "operator",
+  "lang": "az"
+ },
+ {
+  "text": "Nar: Aylıq paketiniz sabah bitir. Yeniləmək üçün Nar+ tətbiqinə baxın: https://nar.az",
+  "expected": "legit",
+  "type": "operator",
+  "lang": "az"
+ },
+ {
+  "text": "Azercell: Siz 10 GB internet istifadə etmisiniz. Qalıq: 5 GB. azercell.com",
+  "expected": "legit",
+  "type": "operator",
+  "lang": "az"
+ },
+ {
+  "text": "Bakcell: Sizin nömrənizə 5 AZN bonus yükləndi. Təşəkkür edirik! bakcell.com",
+  "expected": "legit",
+  "type": "operator",
+  "lang": "az"
+ },
+ {
+  "text": "Umico-da həftəsonu endirimləri! Elektronikaya 30% endirim. Ətraflı: https://umico.az",
+  "expected": "legit",
+  "type": "shop",
+  "lang": "az"
+ },
+ {
+  "text": "Birmarket: Səbətinizdəki məhsul endirimdədir. Sifariş üçün: https://birmarket.az",
+  "expected": "legit",
+  "type": "shop",
+  "lang": "az"
+ },
+ {
+  "text": "Bravo-da həftəsonu endirimləri! Bütün meyvələrə 20% endirim. Ətraflı: https://bravo.az",
+  "expected": "legit",
+  "type": "shop",
+  "lang": "az"
+ },
+ {
+  "text": "Kontakt Home: Yeni il kampaniyası, noutbuklara 15% endirim. https://kontakt.az",
+  "expected": "legit",
+  "type": "shop",
+  "lang": "az"
+ },
+ {
+  "text": "Sifarişiniz qəbul edildi. Çatdırılma sabah 14:00-18:00 arası. Sifariş nömrəsi: 33821. https://umico.az/orders",
+  "expected": "legit",
+  "type": "shop",
+  "lang": "az"
+ },
+ {
+  "text": "Xatırlatma: sabah saat 10:30-da Ağız-diş klinikasında qəbulunuz var. Gələ bilməsəniz zəng edin.",
+  "expected": "legit",
+  "type": "appt",
+  "lang": "az"
+ },
+ {
+  "text": "Salam, sabah saat 15:00-da görüşümüz var. Ünvan dəyişməyib, Nizami küçəsi 12.",
+  "expected": "legit",
+  "type": "appt",
+  "lang": "az"
+ },
+ {
+  "text": "Tibb mərkəzi: Analiz nəticələriniz hazırdır. Qeydiyyatdan götürə bilərsiniz.",
+  "expected": "legit",
+  "type": "appt",
+  "lang": "az"
+ },
+ {
+  "text": "Salam, axşam futbola gəlirsən? Saat 8-də oynayırıq.",
+  "expected": "legit",
+  "type": "friend",
+  "lang": "az"
+ },
+ {
+  "text": "Ana, işdən çıxdım, bir saata evdəyəm. Çörək alım?",
+  "expected": "legit",
+  "type": "friend",
+  "lang": "az"
+ },
+ {
+  "text": "Sabah kafedə görüşək, saat 6-da. Sən də Aysəli çağır.",
+  "expected": "legit",
+  "type": "friend",
+  "lang": "az"
+ },
+ {
+  "text": "Nənə, bayramınız mübarək! Sağlam və xoşbəxt olun.",
+  "expected": "legit",
+  "type": "friend",
+  "lang": "az"
+ },
+ {
+  "text": "Salam qardas, sabah gelirsen? Toya hazirlasiriq, ata deyir mutleq gel.",
+  "expected": "legit",
+  "type": "friend",
+  "lang": "az"
+ },
+ {
+  "text": "Telefonumu təmirə vermişəm, sabah götürəcəm. Bu gün zəng edə bilmirəm.",
+  "expected": "legit",
+  "type": "friend",
+  "lang": "az"
+ },
+ {
+  "text": "BDU: 2-ci kurs tələbələrinin imtahan cədvəli elan olunub. Cədvələ baxın: https://bsu.edu.az",
+  "expected": "legit",
+  "type": "univ",
+  "lang": "az"
+ },
+ {
+  "text": "ADA Universiteti: Sabahkı mühazirə Zoom vasitəsilə keçiriləcək. Link e-poçtunuza göndərilib.",
+  "expected": "legit",
+  "type": "univ",
+  "lang": "az"
+ },
+ {
+  "text": "Qrup yoldaşları, sabah saat 9-da 305-ci otaqda kollokvium var, kitablarınızı unutmayın.",
+  "expected": "legit",
+  "type": "univ",
+  "lang": "az"
+ },
+ {
+  "text": "Wolt: Kuryeriniz yoldadır, təxmini çatdırılma vaxtı 20 dəqiqə.",
+  "expected": "legit",
+  "type": "delivery",
+  "lang": "az"
+ },
+ {
+  "text": "Bolt Food: Sifarişiniz hazırlanır. Kuryer 15 dəqiqəyə çatacaq.",
+  "expected": "legit",
+  "type": "delivery",
+  "lang": "az"
+ },
+ {
+  "text": "Kuryer: Salam, ünvanınızın qarşısındayam, 4-cü mərtəbə, düzdür?",
+  "expected": "legit",
+  "type": "delivery",
+  "lang": "az"
+ },
+ {
+  "text": "Azərişıq: Dekabr ayı üçün elektrik borcunuz 24.60 AZN-dir. Ödəniş: https://azerishiq.az",
+  "expected": "legit",
+  "type": "bill",
+  "lang": "az"
+ },
+ {
+  "text": "Azərsu: Su haqqı borcunuz 11.20 AZN. Ödəniş etmək üçün https://azersu.az",
+  "expected": "legit",
+  "type": "bill",
+  "lang": "az"
+ },
+ {
+  "text": "Azəriqaz: Qaz sayğacı göstəricisini 25-dək bildirin. https://azerigaz.az",
+  "expected": "legit",
+  "type": "bill",
+  "lang": "az"
+ },
+ {
+  "text": "Azərişıq: sabah 10:00-14:00 arası planlı elektrik kəsintisi olacaq (Nərimanov rayonu).",
+  "expected": "legit",
+  "type": "bill",
+  "lang": "az"
+ },
+ {
+  "text": "Azersu: borcunuz yoxdur. Təşəkkür edirik.",
+  "expected": "legit",
+  "type": "bill",
+  "lang": "az"
+ },
+ {
+  "text": "ASAN xidmət: ərizəniz qəbul edildi. Nəticəni https://asan.gov.az saytında izləyə bilərsiniz.",
+  "expected": "legit",
+  "type": "gov",
+  "lang": "az"
+ },
+ {
+  "text": "Vergi Xidməti: Bəyannamənizin müddəti 31 mart tarixində bitir. Ətraflı: https://taxes.gov.az",
+  "expected": "legit",
+  "type": "gov",
+  "lang": "az"
+ },
+ {
+  "text": "DYP: Növbəti texniki baxış tarixiniz 15 dekabrdır. Ətraflı: https://dyp.gov.az",
+  "expected": "legit",
+  "type": "gov",
+  "lang": "az"
+ },
+ {
+  "text": "Reminder: your dentist appointment is tomorrow at 10:30. Reply YES to confirm.",
+  "expected": "legit",
+  "type": "friend_other",
+  "lang": "en"
+ },
+ {
+  "text": "Hey, are we still meeting at 6 for dinner? I booked the table.",
+  "expected": "legit",
+  "type": "friend_other",
+  "lang": "en"
+ },
+ {
+  "text": "Напоминание: завтра в 10:30 у вас приём у врача. Если не сможете прийти, позвоните нам.",
+  "expected": "legit",
+  "type": "friend_other",
+  "lang": "ru"
+ },
+ {
+  "text": "Привет, вечером идём в кино? Билеты уже купил.",
+  "expected": "legit",
+  "type": "friend_other",
+  "lang": "ru"
+ },
+ {
+  "text": "Wolt: курьер уже в пути, заказ будет доставлен через 15 минут.",
+  "expected": "legit",
+  "type": "friend_other",
+  "lang": "ru"
+ },
+ {
+  "text": "Kapital Bank: с вашей карты списано 15.00 AZN. Остаток 120.50 AZN.",
+  "expected": "legit",
+  "type": "friend_other",
+  "lang": "ru"
+ }
+]
