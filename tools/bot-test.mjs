@@ -344,6 +344,20 @@ ok(prow.length === 3 && prow.every((r) => /^[0-9a-f]{32}$/.test(r.phone) && /^[0
   ok(sent("sendMessage").length === 0, "voice in group ignored");
 }
 
+// --- Salamlaşma / təşəkkür: bal yox, qısa cavab; içində rəqəm və ya link olan mesaj adi qaydada yoxlanır
+{
+  const before = sent("sendMessage").length;
+  await update(msgFrom(ali, "Salam!"));
+  ok(/^Salam! 👋/.test(lastText()) && !/\/100/.test(lastText()), "greeting reply", lastText());
+  await update(msgFrom(ali, "Çox sağ ol 🙏"));
+  ok(/^Dəyməz!/.test(lastText()), "thanks reply", lastText());
+  ok(sent("sendMessage").length === before + 2, "one reply each");
+  await update({ update_id: mid++, message: { message_id: 801, from: ali, chat: { id: -100777, type: "group" }, date: 0, text: "salam" } });
+  ok(sent("sendMessage").length === before + 2, "greeting in group ignored");
+  await update(msgFrom(ali, "Salam, səhvən sizə 6 rəqəmli kod göndərdim, zəhmət olmasa onu mənə yazın, təcilidir."));
+  ok(!/^Salam! 👋/.test(lastText()), "scam starting with salam still checked", lastText());
+}
+
 // @@SON@@ (yeni bölmələr bundan əvvələ əlavə olunur)
 tgMock.restore();
 console.log(`bot-test: ${passes} keçdi, ${fails} xəta`);

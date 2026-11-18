@@ -76,6 +76,18 @@ async function sendToday(env, chatId) {
 
 const PRIVATE_ONLY = "Bu funksiya yalnız botla şəxsi yazışmada işləyir. Botu açın: /start";
 
+// Bütün mesaj yalnız salamlaşma və ya təşəkkürdürsə: bal vermirik, nə göndərmək lazım olduğunu deyirik
+const HELLO_WORDS = new Set(["salam", "salamlar", "slm", "selam", "merhaba", "aleykum", "əleykum", "hello", "hi", "hey", "привет", "здравствуйте", "necəsən", "necesen", "necəsiz", "necesiz"]);
+const THANKS_WORDS = new Set(["sağ", "sag", "ol", "olun", "çox", "cox", "təşəkkür", "təşəkkürlər", "tesekkur", "tesekkurler", "thanks", "thank", "you", "спасибо"]);
+function smallTalk(text) {
+  if (text.length > 40 || /[0-9@/:]/.test(text)) return null;
+  const words = text.toLowerCase().replace(/[^\p{L}]+/gu, " ").trim().split(" ").filter(Boolean);
+  if (!words.length || words.length > 4 || !words.every((w) => HELLO_WORDS.has(w) || THANKS_WORDS.has(w))) return null;
+  return words.some((w) => HELLO_WORDS.has(w)) ? "hello" : "thanks";
+}
+const HELLO_REPLY = "Salam! 👋 Şübhəli SMS, WhatsApp mesajı, link, telefon nömrəsi və ya səsli mesajı mənə göndərin, bir neçə saniyəyə yoxlayım.\n\nBot nə edə bilir: /komek";
+const THANKS_REPLY = "Dəyməz! 🙂 Yeni şübhəli mesaj gəlsə, mənə göndərin.";
+
 // Nömrə yoxla: ölkə kodu, +995 hiyləsi, rəsmi nömrələr, istifadəçi bildirişləri
 async function phoneReply(env, msg, input) {
   const chatId = msg.chat.id;
@@ -214,6 +226,8 @@ async function handleMessage(env, ctx, msg) {
       default: return send(env, chatId, "Bu əmri tanımıram. Bot nə edə bilir: /komek");
     }
   }
+  const talk = smallTalk(text);
+  if (talk) return msg.chat.type === "private" ? send(env, chatId, talk === "hello" ? HELLO_REPLY : THANKS_REPLY) : undefined;
   const ph = phoneOnly(text) || shortTextPhone(text);
   if (ph) return phoneReply(env, msg, ph);
   return checkMessage(env, ctx, msg, text);
