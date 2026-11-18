@@ -47,3 +47,19 @@ if (home && nav) {
   window.addEventListener("load", update);
   update();
 }
+
+// Masaüstündə Telegram tətbiqi çox vaxt yoxdur: bot linkləri birbaşa Telegram Web-də açılır.
+// Telefonda (tətbiq var) heç nə dəyişmir.
+if (!/Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent)) {
+  document.addEventListener("click", (e) => {
+    const a = e.target.closest ? e.target.closest('a[href^="https://t.me/"]') : null;
+    if (!a || e.button !== 0 || e.ctrlKey || e.metaKey || e.shiftKey) return;
+    const m = (a.getAttribute("href") || "").match(/^https:\/\/t\.me\/([A-Za-z0-9_]{5,32})\/?(?:\?start=([A-Za-z0-9_-]{1,64}))?$/);
+    if (!m) return;
+    e.preventDefault();
+    const url = m[2]
+      ? "https://web.telegram.org/k/#?tgaddr=" + encodeURIComponent("tg://resolve?domain=" + m[1] + "&start=" + m[2])
+      : "https://web.telegram.org/k/#@" + m[1];
+    window.open(url, "_blank", "noopener");
+  });
+}
